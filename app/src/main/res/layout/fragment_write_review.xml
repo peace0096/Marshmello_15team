@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.writereview.WriteReviewFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/writeReviewTitleLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:id="@+id/writeReviewTitleTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="후기 작성"
+                    android:textColor="#000000"
+                    android:textSize="23sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/title_bar" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/writeReviewTitleLayout"
+                app:layout_constraintVertical_bias="0.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="3dp"
+                            android:text="향미"
+                            android:textColor="#000000"
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <RadioGroup
+                                android:id="@+id/writeReviewFlavourRG"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewFlavourRB1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value1_checked"
+                                    android:buttonTint="#00FFFFFF"
+                                    android:checked="true" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewFlavourRB2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value2"
+                                    android:buttonTint="#00FFFFFF" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewFlavourRB3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value3"
+                                    android:buttonTint="#00FFFFFF" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewFlavourRB4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value4"
+                                    android:buttonTint="#00FFFFFF"
+                                    android:hapticFeedbackEnabled="true" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewFlavourRB5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value5"
+                                    android:buttonTint="#00FFFFFF" />
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="3dp"
+                            android:text="신맛"
+                            android:textColor="#000000"
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <RadioGroup
+                                android:id="@+id/writeReviewSourRG"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewSourRB1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value1_checked"
+                                    android:buttonTint="#00FFFFFF"
+                                    android:checked="true" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewSourRB2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value2"
+                                    android:buttonTint="#00FFFFFF" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewSourRB3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value3"
+                                    android:buttonTint="#00FFFFFF" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewSourRB4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value4"
+                                    android:buttonTint="#00FFFFFF"
+                                    android:hapticFeedbackEnabled="true" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewSourRB5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value5"
+                                    android:buttonTint="#00FFFFFF" />
+                            </RadioGroup>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="3dp"
+                            android:text="쓴맛"
+                            android:textColor="#000000"
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <RadioGroup
+                                android:id="@+id/writeReviewBitterRG"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewBitterRB1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value1_checked"
+                                    android:buttonTint="#00FFFFFF"
+                                    android:checked="true" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewBitterRB2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value2"
+                                    android:buttonTint="#00FFFFFF" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewBitterRB3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value3"
+                                    android:buttonTint="#00FFFFFF" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewBitterRB4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value4"
+                                    android:buttonTint="#00FFFFFF"
+                                    android:hapticFeedbackEnabled="true" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewBitterRB5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value5"
+                                    android:buttonTint="#00FFFFFF" />
+                            </RadioGroup>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="3dp"
+                            android:text="뒷맛"
+                            android:textColor="#000000"
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <RadioGroup
+                                android:id="@+id/writeReviewAftertasteRG"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewAftertasteRB1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value1_checked"
+                                    android:buttonTint="#00FFFFFF"
+                                    android:checked="true" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewAftertasteRB2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value2"
+                                    android:buttonTint="#00FFFFFF" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewAftertasteRB3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value3"
+                                    android:buttonTint="#00FFFFFF" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewAftertasteRB4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value4"
+                                    android:buttonTint="#00FFFFFF"
+                                    android:hapticFeedbackEnabled="true" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewAftertasteRB5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value5"
+                                    android:buttonTint="#00FFFFFF" />
+                            </RadioGroup>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="3dp"
+                            android:text="풍미"
+                            android:textColor="#000000"
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <RadioGroup
+                                android:id="@+id/writeReviewZestRG"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewZestRB1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value1_checked"
+                                    android:buttonTint="#00FFFFFF"
+                                    android:checked="true" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewZestRB2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value2"
+                                    android:buttonTint="#00FFFFFF" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewZestRB3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value3"
+                                    android:buttonTint="#00FFFFFF" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewZestRB4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value4"
+                                    android:buttonTint="#00FFFFFF"
+                                    android:hapticFeedbackEnabled="true" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewZestRB5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value5"
+                                    android:buttonTint="#00FFFFFF" />
+                            </RadioGroup>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="3dp"
+                            android:text="균형감"
+                            android:textColor="#000000"
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <RadioGroup
+                                android:id="@+id/writeReviewBalanceRG"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewBalanceRB1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value1_checked"
+                                    android:buttonTint="#00FFFFFF"
+                                    android:checked="true" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewBalanceRB2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value2"
+                                    android:buttonTint="#00FFFFFF" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewBalanceRB3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value3"
+                                    android:buttonTint="#00FFFFFF" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewBalanceRB4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value4"
+                                    android:buttonTint="#00FFFFFF"
+                                    android:hapticFeedbackEnabled="true" />
+
+                                <RadioButton
+                                    android:id="@+id/writeReviewBalanceRB5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/value5"
+                                    android:buttonTint="#00FFFFFF" />
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/writeReviewDetailLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:padding="5dp"
+                            android:text="상세 후기"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/writeReviewDetailEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:hint="내용을 입력해주세요."
+                            android:inputType="textMultiLine"
+                            android:lines="7"
+                            android:padding="10dp"
+                            android:textColor="#000000"
+                            android:textColorHint="#000000"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="이미지 (선택 사항)"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/writeReviewImagesLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageButton
+                                android:id="@+id/writeReviewImageBtn1"
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/sample_cafe1" />
+
+                            <ImageButton
+                                android:id="@+id/writeReviewImageBtn2"
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/sample_cafe2" />
+
+                            <ImageButton
+                                android:id="@+id/writeReviewImageBtn3"
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/sample_cafe3" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:orientation="vertical" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/writeReviewWriteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF955C"
+            android:text="작성하기"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
