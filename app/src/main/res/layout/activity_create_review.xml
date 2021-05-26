@@ -160,12 +160,11 @@
                         android:layout_height="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:background="@color/main_color"
+                        android:background="@drawable/btn_add"
 
                         />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="0dp"
@@ -187,7 +186,7 @@
                         android:layout_height="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:background="@color/main_color"
+                        android:background="@drawable/btn_add"
 
                         />
 
@@ -215,9 +214,8 @@
                         android:layout_height="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:background="@color/main_color"
+                        android:background="@drawable/btn_add"
                         />
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileEditActivity">
+    tools:context=".ProfileEdit.ProfileEditActivity">
 
 
     <View
@@ -51,6 +51,16 @@
         app:layout_constraintTop_toBottomOf="@id/profileedit_nav_bar"
         android:layout_marginTop="50dp"
         android:background="@color/black"
+
+        />
+
+    <ImageView
+        android:id="@+id/profileedit_profileImage_editbtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/btn_add"
+        app:layout_constraintEnd_toEndOf="@id/profileedit_profileImage"
+        app:layout_constraintBottom_toBottomOf="@id/profileedit_profileImage"
         />
 
 

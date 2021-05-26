@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.konkuk.americano">
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -13,7 +17,7 @@
         <activity android:name=".CreateStore.CreateStoreActivity" />
         <activity android:name=".EditStore.EditStoreActivity" />
         <activity android:name=".MyStore.MyStoreActivity" />
-        <activity android:name=".ProfileEditActivity" />
+        <activity android:name=".ProfileEdit.ProfileEditActivity" />
         <activity android:name=".SettingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

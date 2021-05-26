@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.konkuk.americano.CreateReview.CreateReviewActivity
 import com.konkuk.americano.MyStore.MyStoreActivity
+import com.konkuk.americano.ProfileEdit.ProfileEditActivity
 import com.konkuk.americano.databinding.ActivitySettingBinding
 
 class SettingActivity : AppCompatActivity() {
@@ -38,7 +39,7 @@ class SettingActivity : AppCompatActivity() {
 
             settingProfileEdit.settingBtnBtn.setOnClickListener {
 
-                val intent = Intent(this@SettingActivity,ProfileEditActivity::class.java)
+                val intent = Intent(this@SettingActivity, ProfileEditActivity::class.java)
                 startActivity(intent)
 
             }
