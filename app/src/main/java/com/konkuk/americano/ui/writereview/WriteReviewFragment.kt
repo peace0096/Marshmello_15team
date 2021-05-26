@@ -1,13 +1,24 @@
 package com.konkuk.americano.ui.writereview
 
+import android.Manifest
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RadioButton
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.konkuk.americano.R
 import com.konkuk.americano.databinding.FragmentWriteReviewBinding
+import gun0912.tedimagepicker.builder.TedImagePicker
 
 
 class WriteReviewFragment : Fragment() {
@@ -46,9 +57,52 @@ class WriteReviewFragment : Fragment() {
 
         initWriteBtn()
     }
-
+    // EXTRA_ALLOW_MULTIPLE: higher than API 18
     private fun initAddImagesBtn() {
         // 갤러리 or 카메라로 이미지 선택 각각 버튼에 달아주기
+        binding.imagePlusBtn.setOnClickListener {
+            TedImagePicker.with(this.requireContext())
+                .startMultiImage { uriList -> setReviewImages(uriList) }
+        }
+        binding.writeReviewImage1.setOnClickListener {
+            TedImagePicker.with(this.requireContext())
+                .start { uri -> setReviewImage(uri, it) }
+        }
+        binding.writeReviewImage2.setOnClickListener {
+            TedImagePicker.with(this.requireContext())
+                .start { uri -> setReviewImage(uri, it) }
+        }
+        binding.writeReviewImage3.setOnClickListener {
+            TedImagePicker.with(this.requireContext())
+                .start { uri -> setReviewImage(uri, it) }
+        }
+    }
+
+    private fun setReviewImage(uri: Uri, view: View) {
+        view as ImageView
+        view.setImageURI(uri)
+    }
+
+    private fun setReviewImages(uriList: List<Uri>) {
+        // Log.i("urilistsize", uriList.size.toString())
+        // 3 장 초과 체크 했을 경우 -> 알림 메시지 띄우고 3개만 이미지 추가
+        if (uriList.size > 3) {
+            Toast.makeText(this.requireContext(), "이미지는 3장까지 선택가능합니다.", Toast.LENGTH_SHORT).show()
+        }
+        if (uriList.isEmpty()) {
+            Toast.makeText(this.requireContext(), "이미지가 선택되지 않았습니다.", Toast.LENGTH_SHORT).show()
+        } else {
+            binding.writeReviewImage1.setImageURI(uriList[0])
+            binding.writeReviewImage1.scaleType = ImageView.ScaleType.CENTER_INSIDE
+            if (uriList.size > 1) {
+                binding.writeReviewImage2.setImageURI(uriList[1])
+                binding.writeReviewImage2.scaleType = ImageView.ScaleType.CENTER_INSIDE
+            }
+            if (uriList.size > 2) {
+                binding.writeReviewImage3.setImageURI(uriList[2])
+                binding.writeReviewImage3.scaleType = ImageView.ScaleType.CENTER_INSIDE
+            }
+        }
     }
 
     private fun initWriteBtn() {

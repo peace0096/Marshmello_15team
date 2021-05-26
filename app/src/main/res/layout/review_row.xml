@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
     android:layout_marginBottom="25dp"
-    android:background="@drawable/row_panel"
+    android:background="#6C4D32"
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingTop="10dp"

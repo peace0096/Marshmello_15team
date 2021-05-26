@@ -553,14 +553,28 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="5dp"
-                            android:text="이미지 (선택 사항)"
-                            android:textColor="#000000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="10"
+                                android:padding="5dp"
+                                android:text="이미지 (선택 사항)"
+                                android:textColor="#000000"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/imagePlusBtn"
+                                android:layout_width="40dp"
+                                android:layout_height="30dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/ic_image_add_icon_multi" />
+                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/writeReviewImagesLayout"
@@ -569,28 +583,28 @@
                             android:orientation="horizontal"
                             android:padding="5dp">
 
-                            <ImageButton
-                                android:id="@+id/writeReviewImageBtn1"
+                            <ImageView
+                                android:id="@+id/writeReviewImage1"
                                 android:layout_width="0dp"
                                 android:layout_height="100dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_weight="1"
-                                app:srcCompat="@drawable/sample_cafe1" />
+                                app:srcCompat="@drawable/ic_image_add_icon" />
 
-                            <ImageButton
-                                android:id="@+id/writeReviewImageBtn2"
+                            <ImageView
+                                android:id="@+id/writeReviewImage2"
                                 android:layout_width="0dp"
                                 android:layout_height="100dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_weight="1"
-                                app:srcCompat="@drawable/sample_cafe2" />
+                                app:srcCompat="@drawable/ic_image_add_icon" />
 
-                            <ImageButton
-                                android:id="@+id/writeReviewImageBtn3"
+                            <ImageView
+                                android:id="@+id/writeReviewImage3"
                                 android:layout_width="0dp"
                                 android:layout_height="100dp"
                                 android:layout_weight="1"
-                                app:srcCompat="@drawable/sample_cafe3" />
+                                app:srcCompat="@drawable/ic_image_add_icon" />
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
