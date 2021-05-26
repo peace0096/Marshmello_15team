@@ -3,6 +3,7 @@ package com.konkuk.americano
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.konkuk.americano.CreateReview.CreateReviewActivity
 import com.konkuk.americano.MyStore.MyStoreActivity
 import com.konkuk.americano.databinding.ActivitySettingBinding
 
@@ -46,6 +47,14 @@ class SettingActivity : AppCompatActivity() {
                 val intent = Intent(this@SettingActivity,MyStoreActivity::class.java)
                 startActivity(intent)
             }
+
+            settingMyreviewList.settingBtnBtn.setOnClickListener {
+                val intent = Intent(this@SettingActivity,CreateReviewActivity::class.java)
+                startActivity(intent)
+
+            }
+
+
 
         }
 
