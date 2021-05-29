@@ -15,7 +15,6 @@ object UserViewModel : ViewModel() {
     init {
         registerLiveData.value = null
         loginLiveData.value = null
-
     }
 
     fun registerId(user:User) {
@@ -23,7 +22,7 @@ object UserViewModel : ViewModel() {
             onResponse = {
                 val token = it.body()    //String token
                 registerLiveData.value = token
-                Log.i("registerId : onResponse<token>", "${token}")
+                Log.i("registerId : onResp``onse<token>", "${token}")
             },
 
             onFailure = {
