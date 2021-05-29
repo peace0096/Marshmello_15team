@@ -13,7 +13,6 @@ object RetrofitClient {
         fun callbackMethod(isSuccessful: Boolean, result: String?)
     }
 
-
     private lateinit var retrofit: Retrofit
 
 

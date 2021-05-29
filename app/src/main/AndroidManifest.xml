@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,18 +20,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".MapActivity"></activity>
+        <activity android:name=".LoginRegister.LoginActivity"/>
+        <activity android:name=".LoginRegister.RegisterAcitivty"/>
         <activity android:name=".CreateReview.CreateReviewActivity" />
         <activity android:name=".CreateStore.CreateStoreActivity" />
         <activity android:name=".EditStore.EditStoreActivity" />
         <activity android:name=".MyStore.MyStoreActivity" />
         <activity android:name=".ProfileEdit.ProfileEditActivity" />
         <activity android:name=".SettingActivity">
+
+        </activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <meta-data
             android:name="com.google.android.gms.version"

@@ -28,11 +28,9 @@ class ProfileEditViewModel {
                     UserMe_Repo.getInstance().callGetUserMeAPI(object : RetrofitClient.callback{
                         override fun callbackMethod(isSuccessful: Boolean, result: String?) {
                             if (isSuccessful && result != null){
-
                                 var gson = Gson()
                                 UserMe_Repo.getInstance().setModel(gson.fromJson(result,UserMe_Model::class.java))
                                 usermemodel.value = UserMe_Repo.getInstance().getModel()
-
                             }
                             else {
 
@@ -42,10 +40,7 @@ class ProfileEditViewModel {
                     })
                 }
             }
-
         })
-
-
     }
 
 

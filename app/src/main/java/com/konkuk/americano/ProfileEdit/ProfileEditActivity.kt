@@ -4,12 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Observer
 import com.konkuk.americano.Util.CameraPicker
 import com.konkuk.americano.databinding.ActivityProfileEditBinding
 
 class ProfileEditActivity : AppCompatActivity() {
 
-
+    private lateinit var viewModel: ProfileEditViewModel
     private lateinit var  binding : ActivityProfileEditBinding
     private lateinit var picker :  CameraPicker
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,11 +18,21 @@ class ProfileEditActivity : AppCompatActivity() {
         binding = ActivityProfileEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
         picker = CameraPicker(this)
+        viewModel = ProfileEditViewModel()
         init()
     }
 
     private fun init(){
+
+
         binding.apply {
+
+            viewModel.usermemodel.observe(this@ProfileEditActivity, Observer {
+                if(it != null) {
+
+                }
+            })
+
             profileeditBackBtn.setOnClickListener{
                 finish()
             }

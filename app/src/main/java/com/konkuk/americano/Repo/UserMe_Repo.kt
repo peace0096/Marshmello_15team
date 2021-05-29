@@ -1,6 +1,8 @@
 package com.konkuk.americano.Repo
 
 import com.konkuk.americano.API.List.GETUserMeAPI
+import com.konkuk.americano.API.List.POSTUserLogin
+import com.konkuk.americano.API.List.POSTUserRegister
 import com.konkuk.americano.API.List.PutUserAPI
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Model.UserMe_Model
@@ -50,6 +52,13 @@ class UserMe_Repo {
         GETUserMeAPI.call(callback)
     }
 
+    fun callPostUserLogin(loginId : String, password : String, callback : RetrofitClient.callback) {
+        POSTUserLogin.call(loginId, password, callback)
+    }
+
+    fun callPostUserRegister(loginId:String, password:String, nickname:String, profileImage:String, latitude:Double, longitude:Double, callback: RetrofitClient.callback) {
+        POSTUserRegister.call(loginId, password, nickname, profileImage, latitude, longitude, callback)
+    }
 
 
 

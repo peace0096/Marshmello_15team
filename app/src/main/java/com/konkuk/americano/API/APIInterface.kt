@@ -18,7 +18,16 @@ interface APIInterface {
         @Header("Authorization") token : String
     ): Call<String?>
 
+    @Headers("Content-Type: application/json")
+    @POST("user/login")
+    fun login(
+        @Body body:String
+    ): Call<String?>
 
-
+    @Headers("Content-Type: application/json")
+    @POST("user/register")
+    fun register(
+        @Body body:String
+    ): Call<String?>
 
 }

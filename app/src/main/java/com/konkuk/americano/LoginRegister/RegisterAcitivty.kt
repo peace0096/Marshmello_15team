@@ -1,14 +1,14 @@
-package com.konkuk.americano
+package com.konkuk.americano.LoginRegister
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.konkuk.americano.R
 import com.konkuk.americano.databinding.ActivityRegisterAcitivtyBinding
-import com.konkuk.americano.service.User
-import com.konkuk.americano.service.UserViewModel
 
 class RegisterAcitivty : AppCompatActivity() {
+    lateinit var viewModel: UserLoginViewModel
     lateinit var binding:ActivityRegisterAcitivtyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,8 @@ class RegisterAcitivty : AppCompatActivity() {
     }
 
     private fun initObserve() {
-        UserViewModel.registerLiveData.observe(this, Observer {
+        viewModel = UserLoginViewModel()
+        viewModel.tokenmodel.observe(this, Observer {
             if(it != null) {
                 Toast.makeText(this, "회원가입 성공!", Toast.LENGTH_SHORT).show()
                 finish()
@@ -45,8 +46,7 @@ class RegisterAcitivty : AppCompatActivity() {
                 val profileImage = "[]"
                 val latitutde = 0.0
                 val longitude = 0.0
-                val user = User(id, password, nickname, profileImage, latitutde, longitude)
-                UserViewModel.registerId(user)
+                viewModel.register(id, password, nickname, profileImage, latitutde, longitude)
 
             }
 
