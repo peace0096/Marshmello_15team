@@ -26,6 +26,10 @@ android {
     viewBinding {
         enabled=true
     }
+    dataBinding {
+        enabled = true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -33,7 +37,6 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-
 }
 
 dependencies {
@@ -60,7 +63,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.8.0'
     implementation 'com.google.firebase:firebase-database:19.2.1'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
-
-
+    implementation 'gun0912.ted:tedimagepicker:1.1.10'
+    implementation 'gun0912.ted:tedpermission:x.y.z'
 }

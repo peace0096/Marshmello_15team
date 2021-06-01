@@ -4,7 +4,11 @@
     <uses-feature android:name="android.hardware.camera"
         android:required="true" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
 
     <application
         android:allowBackup="true"
@@ -12,7 +16,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:usesCleartextTraffic="true">
         <activity android:name=".CreateReview.CreateReviewActivity"></activity>
         <activity android:name=".CreateStore.CreateStoreActivity" />
         <activity android:name=".EditStore.EditStoreActivity" />

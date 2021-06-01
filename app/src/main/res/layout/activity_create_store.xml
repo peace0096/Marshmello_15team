@@ -70,16 +70,7 @@
                 android:background="@color/black"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintTop_toTopOf="parent"
-                />
-            <ImageView
-                android:id="@+id/createstore_image1_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/btn_add"
-
-                />
+                app:srcCompat="@drawable/ic_image_add_icon"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -97,16 +88,7 @@
                 android:background="@color/black"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintTop_toTopOf="parent"
-                />
-            <ImageView
-                android:id="@+id/createstore_image2_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/btn_add"
-
-                />
+                app:srcCompat="@drawable/ic_image_add_icon"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -124,17 +106,7 @@
                 android:background="@color/black"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintTop_toTopOf="parent"
-                />
-
-            <ImageView
-                android:id="@+id/createstore_image3_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/btn_add"
-                />
-
+                app:srcCompat="@drawable/ic_image_add_icon"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
