@@ -10,12 +10,14 @@ import com.konkuk.americano.CreateReview.CreateReviewActivity
 import com.konkuk.americano.CreateStore.CreateStoreActivity
 import com.konkuk.americano.MyStore.MyStoreActivity
 import com.konkuk.americano.ProfileEdit.ProfileEditActivity
+import com.konkuk.americano.ViewModel.SettingViewModel
 import com.konkuk.americano.databinding.ActivitySettingBinding
 
 class SettingActivity : AppCompatActivity() {
 
 
     private lateinit var binding: ActivitySettingBinding
+    private lateinit var viewmodel : SettingViewModel
 
 
 
@@ -24,6 +26,7 @@ class SettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingBinding.inflate(layoutInflater)
+        viewmodel = SettingViewModel(this,this)
         setContentView(binding.root)
 
         init()
@@ -49,7 +52,8 @@ class SettingActivity : AppCompatActivity() {
             }
 
             settingMystoreList.settingBtnBtn.setOnClickListener {
-                val intent = Intent(this@SettingActivity,CreateStoreActivity::class.java)
+//                val intent = Intent(this@SettingActivity,CreateStoreActivity::class.java)
+                val intent = Intent(this@SettingActivity,MyStoreActivity::class.java)
                 startActivity(intent)
             }
 
@@ -59,8 +63,12 @@ class SettingActivity : AppCompatActivity() {
 
             }
 
-
-
+            settingResign.settingBtnBtn.setOnClickListener {
+                viewmodel.processResign()
+            }
+            settingLogout.settingBtnBtn.setOnClickListener {
+                viewmodel.processLogout()
+            }
         }
 
     }

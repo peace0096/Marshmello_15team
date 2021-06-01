@@ -3,11 +3,15 @@ package com.konkuk.americano.MyStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.konkuk.americano.Model.Store_Model
 import com.konkuk.americano.databinding.ActivityMyStoreBinding
 import com.konkuk.americano.databinding.MyStoreListCellBinding
 
-class MyStoreRecyclerAdapter(var data: ArrayList<MyStoreData>)  : RecyclerView.Adapter<MyStoreRecyclerAdapter.ViewHolder>() {
+class MyStoreRecyclerAdapter(var data: LiveData<ArrayList<Store_Model>>)  : RecyclerView.Adapter<MyStoreRecyclerAdapter.ViewHolder>() {
 
 
     interface onItemClickListener {
@@ -35,14 +39,21 @@ class MyStoreRecyclerAdapter(var data: ArrayList<MyStoreData>)  : RecyclerView.A
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
        holder.binding.apply {
-           myStoreListStoreCreatedAt.text = "생성일 : " + data[position].createdAt
-           myStoreListStoreTitle.text = "매장이름 : "  + data[position].title
-
+           data.value!!.get(position).let { item ->
+               with(holder) {
+                   myStoreListStoreCreatedAt.text = "생성일 : " + item.createdAt
+                   myStoreListStoreTitle.text = "매장이름 : "  + item.title
+                   Glide.with(holder.binding.root)
+                       .load(item.image.get(0))
+                       .into(myStoreListStoreImage)
+                   myStoreListStoreImage.scaleType = ImageView.ScaleType.CENTER_CROP
+               }
+           }
        }
-
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return data.value!!.size
     }
+
 }

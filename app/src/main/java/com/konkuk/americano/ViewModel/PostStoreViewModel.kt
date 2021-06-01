@@ -10,10 +10,7 @@ import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.observe
+import androidx.lifecycle.*
 import com.gun0912.tedpermission.PermissionListener
 import com.konkuk.americano.API.List.PostStoreAPI
 import com.konkuk.americano.API.List.UploadImageAPI
@@ -28,10 +25,6 @@ class PostStoreViewModel(val context : Context,val activity : Activity) : ViewMo
     var image2 = MutableLiveData<Bitmap?>()
     var image3 = MutableLiveData<Bitmap?>()
 
-    var title = MutableLiveData<String>()
-    var content = MutableLiveData<String>()
-
-
     private var imgarr = ArrayList<MutableLiveData<Bitmap?>>()
 
 
@@ -41,8 +34,6 @@ class PostStoreViewModel(val context : Context,val activity : Activity) : ViewMo
         image1.value = null
         image2.value = null
         image3.value = null
-        title.value = ""
-        content.value = ""
 
 
 
@@ -186,6 +177,7 @@ class PostStoreViewModel(val context : Context,val activity : Activity) : ViewMo
                         override fun callbackMethod(isSuccessful: Boolean, result: String?) {
                             if (isSuccessful){
                                 Toast.makeText(context,"매장 등록을 성공 하셨습니다.",Toast.LENGTH_SHORT).show()
+                                activity.finish()
                             }
                         }
                     })
@@ -195,12 +187,6 @@ class PostStoreViewModel(val context : Context,val activity : Activity) : ViewMo
                 }
             }
         })
-
-
-
-
-
-
     }
 
 

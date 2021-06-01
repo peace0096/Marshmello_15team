@@ -21,8 +21,6 @@ interface APIInterface {
     ): Call<String?>
 
 
-
-
     @Headers("Content-Type: application/json")
     @POST("store")
     fun poststore(
@@ -37,6 +35,44 @@ interface APIInterface {
         @Header("Authorization") token: String,
         @Part file: ArrayList<MultipartBody.Part>
     ): Call<String?>
+
+
+    @Headers("Content-Type: application/json")
+    @GET("store/mystore")
+    fun getmystore(
+        @Header("Authorization") token : String
+    ): Call<String?>
+
+
+    @Headers("Content-Type: application/json")
+    @PUT("store/")
+    fun putmystore(
+        @Header("Authorization") token : String,
+        @Body body: String
+    ): Call<String?>
+
+
+    @Headers("Content-Type: application/json")
+    @GET("store/detail")
+    fun getstoredetail(
+        @Header("Authorization") token : String,
+        @Query("storeId") storeId : Int
+    ): Call<String?>
+
+    @Headers("Content-Type: application/json")
+    @GET("review/me")
+    fun getmyreview(
+        @Header("Authorization") token : String
+    ): Call<String?>
+
+
+    @Headers("Content-Type: application/json")
+    @DELETE("user/")
+    fun resign(
+        @Header("Authorization") token : String
+    ): Call<String?>
+
+
 
 
 

@@ -1,5 +1,6 @@
 package com.konkuk.americano.Repo
 
+import com.konkuk.americano.API.List.DeleteUserAPI
 import com.konkuk.americano.API.List.GETUserMeAPI
 import com.konkuk.americano.API.List.PutUserAPI
 import com.konkuk.americano.API.RetrofitClient
@@ -41,13 +42,18 @@ class UserMe_Repo {
         return this.token
     }
 
-    fun callUserPutAPI(nickname : String , profileImage : ArrayList<String>,callback : RetrofitClient.callback) {
+    fun callUserPutAPI(nickname : String , profileImage : String,callback : RetrofitClient.callback) {
         PutUserAPI.call(nickname,profileImage,callback)
     }
 
 
     fun callGetUserMeAPI(callback : RetrofitClient.callback){
         GETUserMeAPI.call(callback)
+    }
+
+
+    fun callDeleteUserAPI(callback: RetrofitClient.callback){
+        DeleteUserAPI.call(callback)
     }
 
 

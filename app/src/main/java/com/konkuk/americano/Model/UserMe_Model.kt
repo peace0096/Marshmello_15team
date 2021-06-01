@@ -5,16 +5,16 @@ import com.google.gson.annotations.SerializedName
 data class UserMe_Model (
     @SerializedName("loginId")
     @Expose
-    var loginId:String?,
+    var loginId:String,
     @SerializedName("password")
     @Expose
-    var password:String?,
+    var password:String,
     @SerializedName("nickname")
     @Expose
-    var nickname:String?,
+    var nickname:String,
     @SerializedName("profileImage")
     @Expose
-    var profileImage:String?,
+    var profileImage: ArrayList<String>,
     @SerializedName("latitude")
     @Expose
     var latitude:Double?,
