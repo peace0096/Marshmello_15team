@@ -7,6 +7,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import retrofit2.Retrofit
 
 /**
  * Instrumented test, which will execute on an Android device.

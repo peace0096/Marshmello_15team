@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_review_seekbarbox"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="3dp">
+
+    <TextView
+        android:id="@+id/create_review_seekbarbox_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:text="향미"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal"
+        android:paddingRight="10dp">
+
+        <SeekBar
+            android:id="@+id/create_review_seekbarbox_seekbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="39dp" />
+
+        <TextView
+            android:id="@+id/create_review_seekbarbox_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0 / 5"
+            tools:layout_editor_absoluteX="354dp"
+            tools:layout_editor_absoluteY="34dp" />
+    </LinearLayout>
+
+
+</LinearLayout>
