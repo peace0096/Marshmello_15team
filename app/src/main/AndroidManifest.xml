@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MapActivity"></activity>
+        <activity android:name=".Map.MapActivity"/>
         <activity android:name=".LoginRegister.LoginActivity"/>
         <activity android:name=".LoginRegister.RegisterAcitivty"/>
         <activity android:name=".CreateReview.CreateReviewActivity" />

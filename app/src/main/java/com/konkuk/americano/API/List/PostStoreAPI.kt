@@ -1,29 +1,29 @@
 package com.konkuk.americano.API.List
 
-import android.content.Context
-import android.widget.Toast
-import com.konkuk.americano.API.APIInterface
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Repo.UserMe_Repo
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
-import retrofit2.Callback;
+import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
-object PutUserAPI {
+object PostStoreAPI {
 
-    fun call( nickname : String, profileImage : String, callback: RetrofitClient.callback) {
+    fun call( title : String,content : String, latitude : Double, longitude : Double, image : String, callback: RetrofitClient.callback) {
         val body = JSONObject()
         try {
-            body.put("nickname", nickname)
-            body.put("profileImage", profileImage)
+            body.put("title", title)
+            body.put("content", content)
+            body.put("latitude",latitude)
+            body.put("longitude",longitude)
+            body.put("image",image)
         } catch (e: JSONException) {
             callback.callbackMethod(false, null)
         }
 
-        RetrofitClient.getBaseClient().putUser(UserMe_Repo.getInstance().gettoken(),body.toString()).enqueue(object : Callback<String?>{
+        RetrofitClient.getBaseClient().poststore(UserMe_Repo.getInstance().gettoken(),body.toString()).enqueue(object :
+            Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 try {
                     if (response.isSuccessful){
@@ -44,11 +44,6 @@ object PutUserAPI {
             }
         })
 
-
-
-
     }
-
-
 
 }

@@ -5,11 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.konkuk.americano.MapActivity
+import com.konkuk.americano.Map.MapActivity
+import com.konkuk.americano.ViewModel.UserViewModel
 import com.konkuk.americano.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var userLoginViewModel : UserLoginViewModel
+    lateinit var userViewModel : UserViewModel
     lateinit var binding:ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,9 +21,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initObserve() {
-        userLoginViewModel = UserLoginViewModel()
+        userViewModel = UserViewModel(this)
 
-        userLoginViewModel.tokenmodel.observe(this, Observer {
+        userViewModel.tokenmodel.observe(this, Observer {
             if(it != null) {
                 Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MapActivity::class.java)
@@ -38,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
             loginBtn.setOnClickListener {
                 val id = idEditText.text.toString()
                 val password = passwordEditText.text.toString()
-                userLoginViewModel.login(id, password)
+                userViewModel.login(id, password)
             }
 
 
