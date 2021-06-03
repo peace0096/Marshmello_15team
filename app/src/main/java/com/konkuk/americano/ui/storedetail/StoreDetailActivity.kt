@@ -1,20 +1,15 @@
 package com.konkuk.americano.ui.storedetail
 
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.konkuk.americano.R
 import com.konkuk.americano.databinding.ActivityStoreDetailBinding
 import com.konkuk.americano.model.StoreReviewData
-import com.konkuk.americano.util.Evaluations
 import com.konkuk.americano.viewmodel.StoreDetailViewModel
-import kotlinx.android.synthetic.main.review_evaluation_layout.*
 
 class StoreDetailActivity : AppCompatActivity() {
     lateinit var binding: ActivityStoreDetailBinding
@@ -54,12 +49,13 @@ class StoreDetailActivity : AppCompatActivity() {
 
     private fun initSwipeRefresh() {
         binding.detailStoreSwipe.setOnRefreshListener {
+            //TODO 마찬가지로 storeId 지도 액티비티에서 가져오든가 해야함 임시로 3
             viewModel.setLiveData(3)
             Log.i("storeId", viewModel.selectedStoreId.value.toString())
 
             viewModel.responseOk.observe(this, Observer {
                 if (viewModel.responseOk.value == 3) {
-                    Toast.makeText(this, "새로고침 성공", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "새로고침 성공", Toast.LENGTH_SHORT).show() // TODO temp
                     binding.detailStoreSwipe.isRefreshing = false
                 }
             })
@@ -75,7 +71,6 @@ class StoreDetailActivity : AppCompatActivity() {
         //val storeId = 1 // temp 지도에서 선택되면 변경하게 할 것
 
         viewModel.selectedStoreId.observe(this, Observer {
-            Log.i("selectedStoreId ob", "OBSERVED")
             viewModel.callGetStoreDetailAPI()
             viewModel.callGetStoreReviewsAPI()
         })
@@ -94,7 +89,6 @@ class StoreDetailActivity : AppCompatActivity() {
 
     private fun showStoreImages() {
         imageAdapter = DetailShopImagesRecyclerViewAdapter(viewModel.images.value!!)
-        Log.i("viewmodel.iamges", viewModel.images.value.toString())
         imageAdapter.itemClickListener =
             object : DetailShopImagesRecyclerViewAdapter.OnItemClickListener {
                 override fun onItemClick(
@@ -154,6 +148,7 @@ class StoreDetailActivity : AppCompatActivity() {
             }
         } else {
             Toast.makeText(this, "현재 선택된 매장이 없습니다.", Toast.LENGTH_SHORT).show()
+            // TODO 선택된 매장이 없을 경우 빈 내용을 보여야 하니 layout 수정할 것
         }
     }
 

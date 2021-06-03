@@ -23,8 +23,8 @@ object RetrofitClient {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
+        val url = "http://15.165.96.180:7782/api/"
 
-        val url = "http://192.168.50.161:7782/api/"
         retrofit = Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(ScalarsConverterFactory.create())
@@ -41,6 +41,7 @@ object RetrofitClient {
         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
         val url = "http://15.165.96.180:7782/api/"
+
         retrofit = Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(ScalarsConverterFactory.create())

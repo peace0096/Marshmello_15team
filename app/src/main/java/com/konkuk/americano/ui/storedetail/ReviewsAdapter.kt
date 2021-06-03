@@ -1,20 +1,16 @@
 package com.konkuk.americano.ui.storedetail
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.konkuk.americano.R
 import com.konkuk.americano.databinding.ReviewRowBinding
 import com.konkuk.americano.model.StoreReviewData
-import com.konkuk.americano.util.Evaluations
 import com.konkuk.americano.viewmodel.ReviewsViewModel
 
 class ReviewsAdapter(

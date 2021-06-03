@@ -3,6 +3,7 @@ package com.konkuk.americano.api.List
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Environment
+import android.util.Log
 import com.konkuk.americano.api.RetrofitClient
 import com.konkuk.americano.repo.UserMe_Repo
 import okhttp3.MediaType.Companion.toMediaTypeOrNull

@@ -12,76 +12,32 @@ import com.konkuk.americano.model.WriteReviewData
 import org.json.JSONArray
 
 class WriteReviewViewModel(val context: Context, val activity: Activity) {
-    data class ImageModel(var bitmap: Bitmap?, var stringSrc: String?)
 
-    var responseInt: MutableLiveData<Int> = MutableLiveData() // 응답 코드
-
-
-
-    var image1 = MutableLiveData<ImageModel>()
-    var image2 = MutableLiveData<ImageModel>()
-    var image3 = MutableLiveData<ImageModel>()
-    init {
-        image1.value = ImageModel(null, null)
-        image2.value = ImageModel(null, null)
-        image3.value = ImageModel(null, null)
-    }
-
-    // data(image 빈 array) +
-    fun callPostWriteReviewAPI2(data: WriteReviewData) {
-        PostWriteReviewAPI.call(
-            data,
-            object : RetrofitClient.callback {
-                override fun callbackMethod(isSuccessful: Boolean, result: String?) {
-                    if (isSuccessful && result != null) {
-                        Log.i("result - write review", result.toString())
-                        if (result == "") {
-                            responseInt.postValue(1)
-                        } else {
-                            Log.i("??? repsonse - write review", result.toString())
-                            responseInt.postValue(0)
-                        }
-                    } else {
-                        responseInt.postValue(0)
-                    }
-                }
-            })
-    }
+    var responseInt: MutableLiveData<Int> = MutableLiveData() // 응답 코드 1이 올라오면 성공
 
     fun callPostWriteReviewAPI(data: WriteReviewData, images: ArrayList<Bitmap>) {
-        //val imgArr = arrayOf(image1, image2, image3)
-
-        //var bitArray = ArrayList<Bitmap>()
         var imgStringArray = ArrayList<String>()
 
-//        for (it in imgArr) {
-//            if (it.value!!.bitmap != null) {
-//                bitArray.add(it.value!!.bitmap!!)
-//            } else if (it.value!!.stringSrc != null) {
-//                imgStringArray.add(it.value!!.stringSrc!!)
-//            }
-//        }
         UploadImageAPI.call(context, images, object : RetrofitClient.callback {
             override fun imageUploadCallback(isSuccessful: Boolean, result: JSONArray) {
                 // super.imageUploadCallback(isSuccessful, result) -> empty
                 if (isSuccessful) {
                     for (i in 0 until result.length() ) {
                         imgStringArray.add(result.get(i) as String)
-                        Log.i("img str", (result.get(i) as String).toString())
+                        Log.i("img url $i", (result.get(i) as String).toString())
                     }
                     for (i in 0 until imgStringArray.size) {
                         data.image.add(imgStringArray[i])
                     }
 
+                    // image 부분 jsonarray 변경하는 것은 아래 함수에서 처리
                     PostWriteReviewAPI.call(data, object : RetrofitClient.callback {
                         override fun callbackMethod(isSuccessful: Boolean, result: String?) {
                             Log.i("DATA", data.toString())
                             if (isSuccessful && result != null) {
-                                Log.i("result - write review", result.toString())
                                 if (result == "") {
                                     responseInt.postValue(1)
                                 } else {
-                                    Log.i("??? repsonse - write review", result.toString())
                                     responseInt.postValue(0)
                                 }
                             } else {

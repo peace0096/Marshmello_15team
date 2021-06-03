@@ -51,9 +51,7 @@ class WriteReviewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // 작성 화면 전의 액티비티에서 storeId or storeTitle 가져오기
-        // TODO need to be tested
-        storeId = savedInstanceState?.getInt("storeId")?:-1
+
         binding = ActivityWriteReviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -90,6 +88,9 @@ class WriteReviewActivity : AppCompatActivity() {
         viewModel.responseInt.observe(this, Observer {
             if (viewModel.responseInt.value == 1) {
                 Toast.makeText(this, "저장 성공!!!!!!!!!!!!", Toast.LENGTH_SHORT).show()
+                //this.finish()
+            } else {
+                Toast.makeText(this, "저장 실패", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -293,7 +294,6 @@ class WriteReviewActivity : AppCompatActivity() {
     // 작성하기 버튼 listener 성공 여부 반환
     private fun writeReview(){
         // 확인 창 띄우기!
-        //TODO 라이브 러리 이용 아래 구문은 ok 시 callback
         MaterialDialog(this, BottomSheet()).show {
             // default height: 60%
             cornerRadius(16f)
@@ -321,8 +321,10 @@ class WriteReviewActivity : AppCompatActivity() {
 
             positiveButton(text = "작성") { _ ->
                 // request server
-                Toast.makeText(this@WriteReviewActivity, "TEST", Toast.LENGTH_SHORT).show()
-                // TODO storeId 어케 할겨?
+                // TODO storeId -> 현재 선택되어 있는 상점의 storeId에 대한 viewmodel에서 가져오기
+                // 또는 이 액티비티를 로드할 때 전 액티비티(지도)에서 데이터로 storeId를 받아서 사용하기
+                val storeId = 10 // temp
+
                 // 상세 후기 가져오기
                 val content = binding.writeReviewContentEditText.text.toString()
 
@@ -330,7 +332,7 @@ class WriteReviewActivity : AppCompatActivity() {
                 val images = arrayListOf<String>()
 
                 val data = WriteReviewData(
-                    3, // temp
+                    storeId,
                     content,
                     images,
                     flavorValue.toDouble(), sourValue.toDouble(), bitterValue.toDouble(),
@@ -353,11 +355,24 @@ class WriteReviewActivity : AppCompatActivity() {
                     bitmaps.add(BitmapFactory.decodeStream(iStream))
                 }
 
+                // image는 따로 인자로 넣어주면 됨 (data에 넣기 x)
                 viewModel.callPostWriteReviewAPI(data, bitmaps)
             }
             negativeButton(text = "취소")
 
             cancelOnTouchOutside(false)
+        }
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        MaterialDialog(this).show {
+            title(text = "주의")
+            message(text = "나가시면 작성한 내용은 저장되지 않습니다. 메인 화면으로 가시겠습니까?")
+            positiveButton(text = "확인") {
+                finish()
+            }
+            negativeButton(text = "취소")
         }
     }
 }

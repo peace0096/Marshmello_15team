@@ -1,6 +1,5 @@
 package com.konkuk.americano.repo
 
-import com.konkuk.americano.api.List.GetStoreDetailAPI
 import com.konkuk.americano.api.List.GetStoreReviews
 import com.konkuk.americano.api.RetrofitClient
 import com.konkuk.americano.model.StoreReviewData

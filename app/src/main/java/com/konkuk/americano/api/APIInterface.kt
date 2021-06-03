@@ -37,13 +37,13 @@ interface APIInterface {
         @Part file: ArrayList<MultipartBody.Part>
     ): Call<String?>
 
-    /*******************************************************************/
-
     @Headers("Content-Type: application/json")
     @GET("review/me")
     fun getMyReviews(
         @Header("Authorization") token: String
     ): Call<String?>
+
+    /*******************************************************************/
 
     @Headers("Content-Type: application/json")
     @POST("review/")

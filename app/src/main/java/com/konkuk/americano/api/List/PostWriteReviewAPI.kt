@@ -3,6 +3,8 @@ package com.konkuk.americano.api.List
 import android.util.Log
 import com.konkuk.americano.api.RetrofitClient
 import com.konkuk.americano.model.WriteReviewData
+import com.konkuk.americano.repo.UserMe_Repo
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -10,15 +12,18 @@ import retrofit2.Callback
 import retrofit2.Response
 
 object PostWriteReviewAPI {
-    private const val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTYyMjIyNzIwNH0.mDR5xu4O2fV7yxzjm1JBM8qqHSF7ufmvv7COEp2shho"
-
     fun call(data: WriteReviewData, callback: RetrofitClient.callback) {
-        // data json 변환
+        // 인자로 받은 data.image는 arraylist 형식임. 이를 반드시 JSONArray의 형태로 toString() 해서 넣을 것
+        // jsonarray 형태: "["url", "url"]" : OK (올바른 형식)
+        // jsonarray로 바꾸지 않고 arraylist를 toString 하면: "[url, url]" : NO! 일단은 응답으로 ok(200)이 나오지만 image 데이터를 서버에서 가져와서 보내주려고 할 때 에러 나는 것 같음
+
+        val jsonArrayImageUrls = JSONArray(data.image)
+
         val body = JSONObject()
         try {
             body.put("storeId", data.storeId)
             body.put("content", data.content)
-            body.put("image", data.image.toString())
+            body.put("image", jsonArrayImageUrls.toString())
             body.put("flavor", data.flavor)
             body.put("sour", data.sour)
             body.put("bitter", data.bitter)
@@ -28,9 +33,10 @@ object PostWriteReviewAPI {
         } catch (e: JSONException) {
             callback.callbackMethod(false, "parse error")
         }
+        Log.i("BODY", body.toString())
 
         RetrofitClient.postWriteReview().postWriteReview(
-            token,
+            UserMe_Repo.getInstance().gettoken(),
             body.toString())
             .enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
@@ -42,17 +48,13 @@ object PostWriteReviewAPI {
                         val jsonObject = JSONObject(response.errorBody()?.string())
                         callback.callbackMethod(false,jsonObject.getString("message"))
                     }
-                    Log.i("call", call.toString())
-                    Log.i("response", response.toString())
                 }
                 catch (e : JSONException) {
-                    callback.callbackMethod(false, "ERROR")
-                    Log.i("ERROR", e.printStackTrace().toString())
+                    callback.callbackMethod(false, "onResponse - ERROR")
                 }
             }
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                callback.callbackMethod(false, "ERROR")
-                Log.i("ERROR-FAIL", t.printStackTrace().toString())
+                callback.callbackMethod(false, "onFailure - ERROR")
             }
         })
 
