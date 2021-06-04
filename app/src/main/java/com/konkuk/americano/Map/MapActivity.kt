@@ -5,18 +5,23 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -32,11 +37,18 @@ import com.konkuk.americano.R
 import com.konkuk.americano.SettingActivity
 import com.konkuk.americano.ViewModel.UserViewModel
 import com.konkuk.americano.databinding.ActivityMapBinding
+import com.konkuk.americano.Model.StoreReviewData
+import com.konkuk.americano.Model.UserMe_Model
+import com.konkuk.americano.Repo.UserMe_Repo
+import com.konkuk.americano.ui.storedetail.ReviewsAdapter
+import com.konkuk.americano.ViewModel.ReviewsViewModel
 
 class MapActivity : AppCompatActivity() {
     lateinit var binding:ActivityMapBinding
     lateinit var googleMap: GoogleMap
     private val userViewModel = UserViewModel(this)
+    private val reviewsViewModel = ReviewsViewModel()
+    private lateinit var adapter:ReviewsAdapter
 
     var loc = LatLng(37.554752, 126.970631)
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -69,6 +81,24 @@ class MapActivity : AppCompatActivity() {
 
         })
 
+        reviewsViewModel.recentReviewModel.observe(this, Observer {
+            setAdapter()
+        })
+
+        userViewModel.usermodel.observe(this, Observer {
+            val uri = Uri.parse(it.profileImage[0])
+            binding.apply {
+                val header_imageView = navigationView.getHeaderView(0).findViewById<ImageView>(R.id.imageView)
+                val header_idTextView = navigationView.getHeaderView(0).findViewById<TextView>(R.id.idTextView)
+                val header_nicknameTextView = navigationView.getHeaderView(0).findViewById<TextView>(R.id.nicknameTextView)
+                Glide.with(baseContext)
+                    .load(uri)
+                    .into(header_imageView)
+                header_idTextView.text = it.loginId
+                header_nicknameTextView.text = it.nickname
+            }
+        })
+
 
     }
 
@@ -80,7 +110,6 @@ class MapActivity : AppCompatActivity() {
             fastestInterval = 5000
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
-
 
         locationCallback = object: LocationCallback() {
 
@@ -125,8 +154,35 @@ class MapActivity : AppCompatActivity() {
         }
     }
 
-    private fun init() {
+    private fun setAdapter() {
+        val layout = LinearLayoutManager(this@MapActivity, LinearLayoutManager.VERTICAL, false)
         binding.apply {
+            recyclerView.layoutManager = layout
+            if(reviewsViewModel != null) {
+                val model = reviewsViewModel.recentReviewModel.value
+                adapter = ReviewsAdapter(model!!, this@MapActivity, this@MapActivity)
+                adapter.itemClickListener = object : ReviewsAdapter.OnItemClickListener {
+                    override fun onItemClick(
+                        holder: ReviewsAdapter.ViewHolder,
+                        view: View,
+                        data: StoreReviewData,
+                        position: Int
+                    ) {
+
+                    }
+
+                }
+            }
+
+        }
+
+    }
+
+    private fun init() {
+
+        binding.apply {
+            userViewModel.tokenmodel.value = UserMe_Repo.getInstance().gettoken()
+
             val bottomSheetBehavior = BottomSheetBehavior.from<LinearLayout>(bottomSheet)
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
             bottomSheetBehavior.halfExpandedRatio = 0.4f
@@ -136,6 +192,8 @@ class MapActivity : AppCompatActivity() {
             setSupportActionBar(toolbar)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
+
+
 
             navigationView.setNavigationItemSelectedListener {
                 when(it.itemId) {
@@ -164,10 +222,13 @@ class MapActivity : AppCompatActivity() {
             }
 
             updateLocation.setOnClickListener {
+                reviewsViewModel.loadRecentReviews()
                 drawMarkers()
                 moveCameraMyLocation()
             }
         }
+        reviewsViewModel.loadRecentReviews()
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

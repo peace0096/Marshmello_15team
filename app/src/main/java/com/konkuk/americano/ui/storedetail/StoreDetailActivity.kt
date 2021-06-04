@@ -7,8 +7,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.konkuk.americano.Model.StoreReviewData
 import com.konkuk.americano.databinding.ActivityStoreDetailBinding
-import com.konkuk.americano.model.StoreReviewData
 import com.konkuk.americano.viewmodel.StoreDetailViewModel
 
 class StoreDetailActivity : AppCompatActivity() {

@@ -11,8 +11,8 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.gson.Gson
 import com.konkuk.americano.API.RetrofitClient
+import com.konkuk.americano.Model.StoreReviewData
 import com.konkuk.americano.model.StoreDetailData
-import com.konkuk.americano.model.StoreReviewData
 import com.konkuk.americano.repo.StoreDetailRepo
 import com.konkuk.americano.repo.StoreReviewsRepo
 import org.json.JSONArray

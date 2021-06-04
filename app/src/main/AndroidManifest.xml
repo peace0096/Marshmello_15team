@@ -27,16 +27,11 @@
         <activity android:name=".EditStore.EditStoreActivity" />
         <activity android:name=".MyStore.MyStoreActivity" />
         <activity android:name=".ProfileEdit.ProfileEditActivity" />
-        <activity android:name=".SettingActivity">
-
-
-        </activity>
-        <activity android:name=".loginregister.LoginActivity" />
+        <activity android:name=".SettingActivity"/>
         <activity android:name=".ui.writereview.WriteReviewActivity" />
         <activity android:name=".ui.storedetail.StoreDetailActivity" />
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -1,9 +1,10 @@
 package com.konkuk.americano.repo
 
 import com.konkuk.americano.API.List.GetRecentReview
+import com.konkuk.americano.API.List.GetStoreReviews
 import com.konkuk.americano.API.RetrofitClient
-import com.konkuk.americano.api.List.GetStoreReviews
-import com.konkuk.americano.model.StoreReviewData
+import com.konkuk.americano.Model.StoreReviewData
+
 
 class StoreReviewsRepo {
     companion object {
@@ -18,7 +19,7 @@ class StoreReviewsRepo {
                 }
             }
     }
-
+    private var recentReviewModel = ArrayList<StoreReviewData>()
     private var model: ArrayList<StoreReviewData> = arrayListOf()
 
     fun setModel(input: ArrayList<StoreReviewData>) {
@@ -27,6 +28,15 @@ class StoreReviewsRepo {
     fun getModel(): ArrayList<StoreReviewData> {
         return model
     }
+
+    fun getRecentReviewModel() : ArrayList<StoreReviewData>? {
+        return recentReviewModel
+    }
+
+    fun setRecentReviewModel(model : ArrayList<StoreReviewData>) {
+        this.recentReviewModel = model
+    }
+
 
     fun callGetStoreReviewsAPI(callback: RetrofitClient.callback, storeId: Int) {
         GetStoreReviews.call(callback, storeId)

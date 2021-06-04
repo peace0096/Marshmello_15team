@@ -10,8 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.konkuk.americano.R
 import com.konkuk.americano.databinding.ReviewRowBinding
-import com.konkuk.americano.model.StoreReviewData
-import com.konkuk.americano.viewmodel.ReviewsViewModel
+import com.konkuk.americano.Model.StoreReviewData
+import com.konkuk.americano.ViewModel.ReviewsViewModel
+
 
 class ReviewsAdapter(
     private val items: ArrayList<StoreReviewData>,

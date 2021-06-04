@@ -1,4 +1,4 @@
-package com.konkuk.americano.viewmodel
+package com.konkuk.americano.ViewModel
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -8,10 +8,16 @@ import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.google.gson.Gson
+import com.konkuk.americano.API.RetrofitClient
+import com.konkuk.americano.Model.StoreReviewData
+import com.konkuk.americano.repo.StoreReviewsRepo
+import org.json.JSONArray
 
 class ReviewsViewModel {
     var profileImage = MutableLiveData<Bitmap>()
     var storeImages = MutableLiveData<ArrayList<Bitmap>>()
+    var recentReviewModel = MutableLiveData<ArrayList<StoreReviewData>>()
 
     init {
         storeImages.value = arrayListOf()
@@ -67,6 +73,26 @@ class ReviewsViewModel {
         } else {
             // 업로드 된 이미지 없음
         }
+    }
+
+    fun loadRecentReviews() {
+        StoreReviewsRepo.getInstance().callGetRecentReview(object : RetrofitClient.callback {
+            override fun callbackMethod(isSuccessful: Boolean, result: String?) {
+                if(isSuccessful) {
+                    if(result != null) {
+                        val list = ArrayList<StoreReviewData>()
+                        val gson = Gson()
+                        val jsonArray = JSONArray(result)
+                        for(i in 0 until jsonArray.length()) {
+                            val jsonObject = jsonArray.getJSONObject(i)
+                            list.add(gson.fromJson(jsonObject.toString(), StoreReviewData::class.java))
+                        }
+                        StoreReviewsRepo.getInstance().setRecentReviewModel(list)
+                        recentReviewModel.value = StoreReviewsRepo.getInstance().getRecentReviewModel()
+                    }
+                }
+            }
+        })
     }
 
 

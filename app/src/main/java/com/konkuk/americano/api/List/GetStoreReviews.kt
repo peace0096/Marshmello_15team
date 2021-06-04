@@ -1,4 +1,4 @@
-package com.konkuk.americano.api.List
+package com.konkuk.americano.API.List
 
 import android.util.Log
 import com.konkuk.americano.API.RetrofitClient

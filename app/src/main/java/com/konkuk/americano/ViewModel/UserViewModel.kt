@@ -9,6 +9,7 @@ import com.google.gson.JsonObject
 import com.konkuk.americano.API.List.UploadImageAPI
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Model.Store_Model
+import com.konkuk.americano.Model.UserMe_Model
 import com.konkuk.americano.Repo.UserMe_Repo
 import org.json.JSONArray
 import org.json.JSONObject
@@ -16,6 +17,7 @@ import org.json.JSONObject
 class UserViewModel(val context: Context) {
     val tokenmodel = MutableLiveData<String>()
     val listStoreModel = MutableLiveData<ArrayList<Store_Model>>()
+    val usermodel = MutableLiveData<UserMe_Model>()
 
     fun login(loginId:String, password:String) {
         UserMe_Repo.getInstance().callPostUserLogin(loginId, password, object:RetrofitClient.callback {
@@ -103,6 +105,20 @@ class UserViewModel(val context: Context) {
         })
     }
 
+    fun getUserMe() {
+        UserMe_Repo.getInstance().callGetUserMeAPI(object : RetrofitClient.callback {
+            override fun callbackMethod(isSuccessful: Boolean, result: String?) {
+                if(isSuccessful) {
+                    if(result != null) {
+                        val gson = Gson()
+                        val jsonObject = JSONObject(result)
+                        UserMe_Repo.getInstance().setModel(gson.fromJson(jsonObject.toString(), UserMe_Model::class.java))
+                        usermodel.value = UserMe_Repo.getInstance().getModel()
+                    }
+                }
+            }
+        })
+    }
 
 
 
