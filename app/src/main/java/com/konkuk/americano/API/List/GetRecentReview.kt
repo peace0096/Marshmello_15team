@@ -1,7 +1,6 @@
-package com.konkuk.americano.api.List
+package com.konkuk.americano.API.List
 
 import android.util.Log
-import com.konkuk.americano.API.APIInterface
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Repo.UserMe_Repo
 import org.json.JSONException
@@ -10,11 +9,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object GetMyReviewsAPI {
-    private const val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTYyMjIyNzIwNH0.mDR5xu4O2fV7yxzjm1JBM8qqHSF7ufmvv7COEp2shho"
-
+object GetRecentReview {
     fun call(callback: RetrofitClient.callback) {
-        RetrofitClient.getBaseClient().getMyReviews(UserMe_Repo.getInstance().gettoken())
+        RetrofitClient.getBaseClient().getRecentReview(UserMe_Repo.getInstance().gettoken())
             .enqueue(object : Callback<String?> {
                 override fun onResponse(
                     call: Call<String?>,

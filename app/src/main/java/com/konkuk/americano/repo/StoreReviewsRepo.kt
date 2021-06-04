@@ -1,7 +1,8 @@
 package com.konkuk.americano.repo
 
+import com.konkuk.americano.API.List.GetRecentReview
+import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.api.List.GetStoreReviews
-import com.konkuk.americano.api.RetrofitClient
 import com.konkuk.americano.model.StoreReviewData
 
 class StoreReviewsRepo {
@@ -29,5 +30,9 @@ class StoreReviewsRepo {
 
     fun callGetStoreReviewsAPI(callback: RetrofitClient.callback, storeId: Int) {
         GetStoreReviews.call(callback, storeId)
+    }
+
+    fun callGetRecentReview(callback: RetrofitClient.callback) {
+        GetRecentReview.call(callback)
     }
 }

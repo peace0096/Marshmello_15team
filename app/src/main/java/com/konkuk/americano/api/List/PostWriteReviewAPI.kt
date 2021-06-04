@@ -1,9 +1,9 @@
 package com.konkuk.americano.api.List
 
 import android.util.Log
-import com.konkuk.americano.api.RetrofitClient
+import com.konkuk.americano.API.RetrofitClient
+import com.konkuk.americano.Repo.UserMe_Repo
 import com.konkuk.americano.model.WriteReviewData
-import com.konkuk.americano.repo.UserMe_Repo
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -35,7 +35,7 @@ object PostWriteReviewAPI {
         }
         Log.i("BODY", body.toString())
 
-        RetrofitClient.postWriteReview().postWriteReview(
+        RetrofitClient.getBaseClient().postWriteReview(
             UserMe_Repo.getInstance().gettoken(),
             body.toString())
             .enqueue(object : Callback<String?> {

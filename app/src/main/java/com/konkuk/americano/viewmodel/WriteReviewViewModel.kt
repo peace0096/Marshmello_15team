@@ -5,9 +5,9 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.konkuk.americano.API.List.UploadImageAPI
+import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.api.List.PostWriteReviewAPI
-import com.konkuk.americano.api.List.UploadImageAPI
-import com.konkuk.americano.api.RetrofitClient
 import com.konkuk.americano.model.WriteReviewData
 import org.json.JSONArray
 

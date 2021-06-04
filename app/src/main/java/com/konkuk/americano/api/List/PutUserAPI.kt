@@ -1,16 +1,20 @@
-package com.konkuk.americano.api.List
+package com.konkuk.americano.API.List
 
-import com.konkuk.americano.api.RetrofitClient
-import com.konkuk.americano.repo.UserMe_Repo
+import android.content.Context
+import android.widget.Toast
+import com.konkuk.americano.API.APIInterface
+import com.konkuk.americano.API.RetrofitClient
+import com.konkuk.americano.Repo.UserMe_Repo
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback;
 import retrofit2.Response
+import retrofit2.Retrofit
 
 object PutUserAPI {
 
-    fun call( nickname : String, profileImage : ArrayList<String>, callback: RetrofitClient.callback) {
+    fun call( nickname : String, profileImage : String, callback: RetrofitClient.callback) {
         val body = JSONObject()
         try {
             body.put("nickname", nickname)

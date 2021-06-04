@@ -1,8 +1,8 @@
 package com.konkuk.americano.api.List
 
 import android.util.Log
-import com.konkuk.americano.api.RetrofitClient
-import com.konkuk.americano.repo.UserMe_Repo
+import com.konkuk.americano.API.RetrofitClient
+import com.konkuk.americano.Repo.UserMe_Repo
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -11,7 +11,7 @@ import retrofit2.Response
 
 object GetStoreReviews {
     fun call(callback: RetrofitClient.callback, storeId: Int) {
-        RetrofitClient.getStoreReviews().getStoreReviews(
+        RetrofitClient.getBaseClient().getStoreReviews(
             UserMe_Repo.getInstance().gettoken(),
             storeId = storeId)
             .enqueue(object : Callback<String?> {

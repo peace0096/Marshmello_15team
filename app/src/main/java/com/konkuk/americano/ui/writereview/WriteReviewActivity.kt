@@ -23,7 +23,6 @@ import com.afollestad.materialdialogs.bottomsheets.setPeekHeight
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.list.listItems
 import com.konkuk.americano.R
-import com.konkuk.americano.api.RetrofitClient
 import com.konkuk.americano.databinding.ActivityWriteReviewBinding
 import com.konkuk.americano.model.WriteReviewData
 import com.konkuk.americano.viewmodel.WriteReviewViewModel

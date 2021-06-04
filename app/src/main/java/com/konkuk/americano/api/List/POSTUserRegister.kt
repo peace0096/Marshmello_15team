@@ -1,6 +1,6 @@
-package com.konkuk.americano.api.List
+package com.konkuk.americano.API.List
 
-import com.konkuk.americano.api.RetrofitClient
+import com.konkuk.americano.API.RetrofitClient
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call

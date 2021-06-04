@@ -1,7 +1,7 @@
 package com.konkuk.americano.repo
 
-import com.konkuk.americano.api.List.GetStoreDetailAPI
-import com.konkuk.americano.api.RetrofitClient
+import com.konkuk.americano.API.List.GetStoreDetailAPI
+import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.model.StoreDetailData
 
 class StoreDetailRepo {
@@ -28,6 +28,6 @@ class StoreDetailRepo {
     }
 
     fun callGetStoreDetailAPI(callback: RetrofitClient.callback, storeId: Int) {
-        GetStoreDetailAPI.call(callback, storeId)
+        GetStoreDetailAPI.call(storeId, callback)
     }
 }

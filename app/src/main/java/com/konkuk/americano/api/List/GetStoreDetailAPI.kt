@@ -1,7 +1,7 @@
-package com.konkuk.americano.api.List
+package com.konkuk.americano.API.List
 
-import com.konkuk.americano.api.RetrofitClient
-import com.konkuk.americano.repo.UserMe_Repo
+import com.konkuk.americano.API.RetrofitClient
+import com.konkuk.americano.Repo.UserMe_Repo
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -10,29 +10,29 @@ import retrofit2.Response
 
 object GetStoreDetailAPI {
 
-    fun call(callback: RetrofitClient.callback, storeId: Int) {
-        RetrofitClient.getStoreDetail().getStoreDetail(
-            UserMe_Repo.getInstance().gettoken(),
-            storeId = storeId)
-            .enqueue(object : Callback<String?> {
+    fun call(storeId : Int, callback: RetrofitClient.callback) {
+        RetrofitClient.getBaseClient().getstoredetail(UserMe_Repo.getInstance().gettoken(),storeId)
+            .enqueue(object :
+                Callback<String?> {
                 override fun onResponse(call: Call<String?>, response: Response<String?>) {
                     try {
-                        if (response.isSuccessful){
+                        if (response.isSuccessful) {
                             callback.callbackMethod(true, response.body().toString())
-                        }
-                        else {
+                        } else {
                             val jsonObject = JSONObject(response.errorBody()?.string())
-                            callback.callbackMethod(false,jsonObject.getString("message"))
+                            callback.callbackMethod(false, jsonObject.getString("message"))
+
                         }
-                    }
-                    catch (e : JSONException) {
-                        callback.callbackMethod(false, "onResponse - ERROR")
+                    } catch (e: JSONException) {
+                        callback.callbackMethod(false, "잠시 후 시도해주세요 ")
                     }
                 }
+
                 override fun onFailure(call: Call<String?>, t: Throwable) {
-                    callback.callbackMethod(false, "onFailure - ERROR")
+                    callback.callbackMethod(false, "잠시 후 시도해주세요 ")
                 }
             })
-
     }
+
+
 }

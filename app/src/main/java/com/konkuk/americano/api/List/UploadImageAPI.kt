@@ -1,11 +1,10 @@
-package com.konkuk.americano.api.List
+package com.konkuk.americano.API.List
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Environment
-import android.util.Log
-import com.konkuk.americano.api.RetrofitClient
-import com.konkuk.americano.repo.UserMe_Repo
+import com.konkuk.americano.API.RetrofitClient
+import com.konkuk.americano.Repo.UserMe_Repo
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -19,7 +18,9 @@ import java.io.File
 import java.io.FileOutputStream
 import kotlin.random.Random
 
+
 object UploadImageAPI {
+
     fun call(context : Context, image : ArrayList<Bitmap>, callback: RetrofitClient.callback) {
 
         if (image.size == 0){
@@ -30,21 +31,18 @@ object UploadImageAPI {
         var filedata = ArrayList<MultipartBody.Part>()
 
 
-        for (bp in image){
-            val rand = Random
-            val name = System.currentTimeMillis().toString() + rand.nextInt(10000).toString() + ".png"
-            var photo = File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)?.path,name)
-            var output = FileOutputStream(photo)
-            bp.compress(Bitmap.CompressFormat.JPEG,100,output)
+       for (bp in image){
+           val rand = Random
+           val name = System.currentTimeMillis().toString() + rand.nextInt(10000).toString() + ".png"
+           var photo = File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)?.path,name)
+           var output = FileOutputStream(photo)
+           bp.compress(Bitmap.CompressFormat.JPEG,100,output)
 
-            filedata.add(MultipartBody.Part.createFormData("file",name,RequestBody.Companion.create(
-                "image/png".toMediaTypeOrNull(),photo)))
-        }
+           filedata.add(MultipartBody.Part.createFormData("file",name,RequestBody.Companion.create(
+               "image/png".toMediaTypeOrNull(),photo)))
+       }
 
-        RetrofitClient.getBaseClient().uploadPhoto(
-            UserMe_Repo.getInstance().gettoken(),
-            filedata
-        ).enqueue(object :
+        RetrofitClient.getBaseClient().uploadPhoto(UserMe_Repo.getInstance().gettoken(),filedata).enqueue(object :
             Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 try {
@@ -67,4 +65,6 @@ object UploadImageAPI {
         })
 
     }
+
+
 }

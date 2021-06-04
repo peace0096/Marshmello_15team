@@ -1,4 +1,4 @@
-package com.konkuk.americano.util
+package com.konkuk.americano.Util
 
 import android.Manifest
 import android.Manifest.permission.CAMERA
