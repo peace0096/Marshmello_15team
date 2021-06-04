@@ -36,6 +36,7 @@
             android:layout_height="100dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/sample_cafe1" />
 
         <ImageView
@@ -44,6 +45,7 @@
             android:layout_height="100dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/sample_cafe2" />
 
         <ImageView
@@ -51,17 +53,26 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/sample_cafe3" />
     </LinearLayout>
 
+    <View
+        style="@style/divider"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="5dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/review_usericon"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            app:civ_border_color="@color/txt_medium_gray"
+            app:civ_border_width="2dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.06"

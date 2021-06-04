@@ -71,7 +71,9 @@ class ReviewsAdapter(
         viewModel.loadStoreImages(context, item.image)
         viewModel.storeImages.observe(lifecycleOwner, Observer {
             val size = viewModel.storeImages.value!!.size
-            if (size == 1) {
+            if (size == 0) {
+                // nothing
+            } else if (size == 1) {
                 binding.reviewImage1.setImageBitmap(viewModel.storeImages.value!![0])
             } else if (size == 2) {
                 binding.reviewImage1.setImageBitmap(viewModel.storeImages.value!![0])
@@ -84,17 +86,17 @@ class ReviewsAdapter(
         })
 
         // profile image
-        // todo lifecyclerowner 여기 가져와서 써도 되나...?
-        viewModel.loadProfileImage(context, item.profileImage[0])
-        viewModel.profileImage.observe(lifecycleOwner, Observer {
-            binding.reviewUsericon.setImageBitmap(viewModel.profileImage.value)
-        })
+        if (item.profileImage[0] != null) {
+            viewModel.loadProfileImage(context, item.profileImage[0])
+            viewModel.profileImage.observe(lifecycleOwner, Observer {
+                binding.reviewUsericon.setImageBitmap(viewModel.profileImage.value)
+            })
+        }
 
         // nickname
         binding.reviewUsernick.text = item.nickname
 
         // 날짜 표시 yyyy-MM-dd 만 표시 (뒤에 시 분 초 생략)
-        // TODO 일단 createdAt이 서버에서 안줌... -> ? 사용 일단
         Log.i("ITEM", item.toString())
         if (item.createdAt != null) {
             binding.reviewDate.text = item.createdAt.split(" ")[0]

@@ -50,7 +50,7 @@ class StoreDetailActivity : AppCompatActivity() {
     private fun initSwipeRefresh() {
         binding.detailStoreSwipe.setOnRefreshListener {
             //TODO 마찬가지로 storeId 지도 액티비티에서 가져오든가 해야함 임시로 3
-            viewModel.setLiveData(3)
+            viewModel.setLiveData(10)
             Log.i("storeId", viewModel.selectedStoreId.value.toString())
 
             viewModel.responseOk.observe(this, Observer {
