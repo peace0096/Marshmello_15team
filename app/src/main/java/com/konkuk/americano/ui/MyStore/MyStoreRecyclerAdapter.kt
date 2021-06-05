@@ -1,4 +1,4 @@
-package com.konkuk.americano.MyStore
+package com.konkuk.americano.ui.MyStore
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.konkuk.americano.Model.Store_Model
-import com.konkuk.americano.databinding.ActivityMyStoreBinding
 import com.konkuk.americano.databinding.MyStoreListCellBinding
 
 class MyStoreRecyclerAdapter(var data: LiveData<ArrayList<Store_Model>>)  : RecyclerView.Adapter<MyStoreRecyclerAdapter.ViewHolder>() {

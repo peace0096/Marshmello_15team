@@ -1,15 +1,11 @@
-package com.konkuk.americano
+package com.konkuk.americano.ui.Setting
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
-import com.konkuk.americano.CreateReview.CreateReviewActivity
-import com.konkuk.americano.CreateStore.CreateStoreActivity
-import com.konkuk.americano.MyStore.MyStoreActivity
-import com.konkuk.americano.ProfileEdit.ProfileEditActivity
+import com.konkuk.americano.ui.CreateReview.CreateReviewActivity
+import com.konkuk.americano.ui.MyStore.MyStoreActivity
+import com.konkuk.americano.ui.ProfileEdit.ProfileEditActivity
 import com.konkuk.americano.ViewModel.SettingViewModel
 import com.konkuk.americano.databinding.ActivitySettingBinding
 
@@ -53,12 +49,12 @@ class SettingActivity : AppCompatActivity() {
 
             settingMystoreList.settingBtnBtn.setOnClickListener {
 //                val intent = Intent(this@SettingActivity,CreateStoreActivity::class.java)
-                val intent = Intent(this@SettingActivity,MyStoreActivity::class.java)
+                val intent = Intent(this@SettingActivity, MyStoreActivity::class.java)
                 startActivity(intent)
             }
 
             settingMyreviewList.settingBtnBtn.setOnClickListener {
-                val intent = Intent(this@SettingActivity,CreateReviewActivity::class.java)
+                val intent = Intent(this@SettingActivity, CreateReviewActivity::class.java)
                 startActivity(intent)
 
             }

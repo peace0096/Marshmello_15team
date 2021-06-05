@@ -1,12 +1,10 @@
-package com.konkuk.americano.CreateStore
+package com.konkuk.americano.ui.CreateStore
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.konkuk.americano.ViewModel.PostStoreViewModel
-import com.konkuk.americano.databinding.ActivityCreateReviewBinding
 import com.konkuk.americano.databinding.ActivityCreateStoreBinding
 
 class CreateStoreActivity : AppCompatActivity() {

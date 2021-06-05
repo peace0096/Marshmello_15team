@@ -1,9 +1,10 @@
-package com.konkuk.americano
+package com.konkuk.americano.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.konkuk.americano.LoginRegister.LoginActivity
+import com.konkuk.americano.R
+import com.konkuk.americano.ui.LoginRegister.LoginActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.konkuk.americano.LoginRegister
+package com.konkuk.americano.ui.LoginRegister
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -14,7 +14,7 @@ import com.konkuk.americano.ViewModel.UserViewModel
 import com.konkuk.americano.databinding.ActivityRegisterAcitivtyBinding
 import gun0912.tedimagepicker.builder.TedImagePicker
 
-class RegisterAcitivty : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     private lateinit var viewModel: UserViewModel
     private lateinit var binding:ActivityRegisterAcitivtyBinding
     private var image: Bitmap? = null
@@ -63,7 +63,7 @@ class RegisterAcitivty : AppCompatActivity() {
             addProfile.setOnClickListener {
                 if(permissionChecks()) {
 
-                    TedImagePicker.with(this@RegisterAcitivty).start {
+                    TedImagePicker.with(this@RegisterActivity).start {
                         if(it == null) {
                             Toast.makeText(baseContext, "이미지가 선택되지 않았습니다.", Toast.LENGTH_SHORT).show()
                         } else {

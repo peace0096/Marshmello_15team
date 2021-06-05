@@ -1,4 +1,4 @@
-package com.konkuk.americano.loginregister
+package com.konkuk.americano.ViewModel
 
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson

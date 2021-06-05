@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbarSize="2dp"
-    tools:context=".ui.writereview.WriteReviewActivity">
+    tools:context=".ui.WriteReview.WriteReviewActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

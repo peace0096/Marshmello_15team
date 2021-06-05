@@ -1,11 +1,11 @@
-package com.konkuk.americano.LoginRegister
+package com.konkuk.americano.ui.LoginRegister
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.konkuk.americano.Map.MapActivity
+import com.konkuk.americano.ui.Map.MapActivity
 import com.konkuk.americano.ViewModel.UserViewModel
 import com.konkuk.americano.databinding.ActivityLoginBinding
 
@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
 
 
             registerText.setOnClickListener {
-                val intent = Intent(baseContext, RegisterAcitivty::class.java)
+                val intent = Intent(baseContext, RegisterActivity::class.java)
                 startActivity(intent)
             }
 

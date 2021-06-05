@@ -1,4 +1,4 @@
-package com.konkuk.americano.MyStore
+package com.konkuk.americano.ui.MyStore
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,12 +6,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.konkuk.americano.EditStore.EditStoreActivity
-import com.konkuk.americano.Model.Store_Model
-import com.konkuk.americano.R
+import com.konkuk.americano.ui.EditStore.EditStoreActivity
 import com.konkuk.americano.Repo.Editstore_Repo
 import com.konkuk.americano.ViewModel.MyStoreViewModel
-import com.konkuk.americano.ViewModel.PostStoreViewModel
 import com.konkuk.americano.databinding.ActivityMyStoreBinding
 
 class MyStoreActivity : AppCompatActivity() {
@@ -60,7 +57,7 @@ class MyStoreActivity : AppCompatActivity() {
             adapter.itemClickListener = object : MyStoreRecyclerAdapter.onItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
 
-                    val intent = Intent(this@MyStoreActivity,EditStoreActivity::class.java)
+                    val intent = Intent(this@MyStoreActivity, EditStoreActivity::class.java)
                     Editstore_Repo.getInstance().setStoreId(adapter.data.value!![position].storeId)
                     startActivity(intent)
                 }

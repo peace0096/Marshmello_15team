@@ -1,13 +1,10 @@
-package com.konkuk.americano.ProfileEdit
+package com.konkuk.americano.ui.ProfileEdit
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
-import com.konkuk.americano.Util.CameraPicker
 import com.konkuk.americano.ViewModel.ProfileEditViewModel
 import com.konkuk.americano.databinding.ActivityProfileEditBinding
 

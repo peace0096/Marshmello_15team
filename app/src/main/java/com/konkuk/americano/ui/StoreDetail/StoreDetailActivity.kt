@@ -1,4 +1,4 @@
-package com.konkuk.americano.ui.storedetail
+package com.konkuk.americano.ui.StoreDetail
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.konkuk.americano.Model.StoreReviewData
 import com.konkuk.americano.databinding.ActivityStoreDetailBinding
-import com.konkuk.americano.ui.writereview.WriteReviewActivity
+import com.konkuk.americano.ui.WriteReview.WriteReviewActivity
 import com.konkuk.americano.viewmodel.StoreDetailViewModel
 
 class StoreDetailActivity : AppCompatActivity() {
