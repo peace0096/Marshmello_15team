@@ -1,5 +1,6 @@
 package com.konkuk.americano.ui.storedetail
 
+import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.konkuk.americano.Model.StoreReviewData
 import com.konkuk.americano.databinding.ActivityStoreDetailBinding
+import com.konkuk.americano.ui.writereview.WriteReviewActivity
 import com.konkuk.americano.viewmodel.StoreDetailViewModel
 
 class StoreDetailActivity : AppCompatActivity() {
@@ -34,23 +36,28 @@ class StoreDetailActivity : AppCompatActivity() {
 
         initSwipeRefresh()
 
-        // 이미지 서버로 부터 가져오기 (image: Bitmap)
-        initTestImages()
-
         // 본문 추가
         initObserver()
 
-        // 후기 내용 불러오기
-        initTestReview()
-
         // review recycler view review 추가
         initReviewList()
+
+        // 작성 btn init
+        initWriteBtn()
+    }
+
+    private fun initWriteBtn() {
+        binding.detailStoreWriteBtn.setOnClickListener {
+            //TODO
+            val intent = Intent(this, WriteReviewActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initSwipeRefresh() {
         binding.detailStoreSwipe.setOnRefreshListener {
             //TODO 마찬가지로 storeId 지도 액티비티에서 가져오든가 해야함 임시로 3
-            viewModel.setLiveData(10)
+            viewModel.setLiveData(5)
             Log.i("storeId", viewModel.selectedStoreId.value.toString())
 
             viewModel.responseOk.observe(this, Observer {
@@ -166,90 +173,5 @@ class StoreDetailActivity : AppCompatActivity() {
                 }
             }
         binding.detailStoreReviewsRecyclerView.adapter = reviewAdapter
-    }
-
-
-    private fun initTestReview() {
-        // temp - 서버로 부터 값 가져오기
-        // 맛 평가 값
-//        val tempMap: MutableMap<Evaluations, Int> = mutableMapOf(
-//            Evaluations.FLAVOUR to 4,
-//            Evaluations.AFTERTASTE to 1,
-//            Evaluations.SOUR to 2,
-//            Evaluations.ZEST to 0,
-//            Evaluations.BITTER to 3,
-//            Evaluations.BALANCE to 5
-//        )
-
-        // 매장 이미지 3장
-//        val images = arrayListOf<Bitmap>(
-//            BitmapFactory.decodeResource(resources, R.drawable.sample_cafe1),
-//            BitmapFactory.decodeResource(resources, R.drawable.sample_cafe2),
-//            BitmapFactory.decodeResource(resources, R.drawable.sample_cafe3)
-//        )
-        // 유저 아이콘
-        //val userIcon = BitmapFactory.decodeResource(resources, R.drawable.profile_icon)
-
-        // 모든 리뷰들
-        detailReview.add(
-            StoreReviewData(
-                1,
-                -1,
-                "가격 양호",
-                arrayListOf<String>(),
-                "2021-00-00",
-                1, 2, 3, 4, 5, 6,
-                "nick3",
-                arrayListOf<String>()
-            )
-        )
-        detailReview.add(
-            StoreReviewData(
-                1,
-                -1,
-                "가격 양호",
-                arrayListOf<String>(),
-                "2021-00-00",
-                1, 2, 3, 4, 5, 6,
-                "nick2",
-                arrayListOf<String>()
-            )
-
-        )
-        detailReview.add(
-            StoreReviewData(
-                1,
-                -1,
-                "가격 양호",
-                arrayListOf<String>(),
-                "2021-00-00",
-                1, 2, 3, 4, 5, 6,
-                "nick1",
-                arrayListOf<String>()
-            )
-        )
-    }
-
-    private fun initTestImages() {
-//        detailImages.add(BitmapFactory.decodeResource(resources, R.drawable.sample_cafe1))
-//        detailImages.add(BitmapFactory.decodeResource(resources, R.drawable.sample_cafe2))
-//        detailImages.add(BitmapFactory.decodeResource(resources, R.drawable.sample_cafe3))
-//        detailImages.add(BitmapFactory.decodeResource(resources, R.drawable.sample_cafe1))
-//
-//        // image recycler view 에 이미지 추가
-//        imageAdapter = DetailShopImagesRecyclerViewAdapter(detailImages)
-//        imageAdapter.itemClickListener =
-//            object : DetailShopImagesRecyclerViewAdapter.OnItemClickListener {
-//                override fun onItemClick(
-//                    holder: DetailShopImagesRecyclerViewAdapter.ViewHolder,
-//                    view: View,
-//                    data: Bitmap,
-//                    position: Int
-//                ) {
-//
-//                }
-//
-//            }
-//        binding.storeImagesRecyclerView.adapter = imageAdapter
     }
 }

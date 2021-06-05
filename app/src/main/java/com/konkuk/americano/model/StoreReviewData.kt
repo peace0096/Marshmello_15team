@@ -21,22 +21,22 @@ data class StoreReviewData(
     val createdAt: String,
     @SerializedName("flavor")
     @Expose
-    val flavor: Int,
+    val flavor: Double,
     @SerializedName("sour")
     @Expose
-    val sour: Int,
+    val sour: Double,
     @SerializedName("bitter")
     @Expose
-    val bitter: Int,
+    val bitter: Double,
     @SerializedName("aftertaste")
     @Expose
-    val aftertaste: Int,
+    val aftertaste: Double,
     @SerializedName("zest")
     @Expose
-    val zest: Int,
+    val zest: Double,
     @SerializedName("balance")
     @Expose
-    val balance: Int,
+    val balance: Double,
     @SerializedName("nickname")
     @Expose
     val nickname: String,

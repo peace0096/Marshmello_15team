@@ -37,12 +37,12 @@ class WriteReviewActivity : AppCompatActivity() {
 
     var storeId = -1
 
-    var flavorValue = 1
-    var sourValue = 1
-    var bitterValue = 1
-    var aftertasteValue = 1
-    var zestValue = 1
-    var balanceValue = 1
+    var flavorValue = 1.0
+    var sourValue = 1.0
+    var bitterValue = 1.0
+    var aftertasteValue = 1.0
+    var zestValue = 1.0
+    var balanceValue = 1.0
 
     var imageUri1: Uri? = null
     var imageUri2: Uri? = null
@@ -104,7 +104,7 @@ class WriteReviewActivity : AppCompatActivity() {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (seekBar != null) {
                     val value = this.spiltValue(progress)
-                    val string = "$value / 5"
+                    val string = "$value / 5.0"
                     when(seekBar.tag) {
                         1 -> {
                             binding.writeFlavorSeekbar.createReviewSeekbarboxValue.text = string
@@ -141,21 +141,31 @@ class WriteReviewActivity : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 //TODO("Not yet implemented")
             }
-            private fun spiltValue(progress: Int): Int {
+            private fun spiltValue(progress: Int): Double {
                 // progress: 0-100 -> 0, 1, 2, 3, 4, 5
                 val v = progress.toDouble() / 20
                 return if (v < 0.5) {
-                    0
+                    0.0
+                } else if (v < 1.0) {
+                    0.5
                 } else if (v < 1.5) {
-                    1
+                    1.0
+                } else if (v < 2.0) {
+                    1.5
                 } else if (v < 2.5) {
-                    2
+                    2.0
+                } else if (v < 3.0) {
+                    2.5
                 } else if (v < 3.5) {
-                    3
+                    3.0
+                } else if (v < 4.0) {
+                    3.5
                 } else if (v < 4.5) {
-                    4
+                    4.0
+                } else if (v <5.0) {
+                    4.5
                 } else {
-                    5
+                    5.0
                 }
             }
         }
@@ -334,8 +344,8 @@ class WriteReviewActivity : AppCompatActivity() {
                     storeId,
                     content,
                     images,
-                    flavorValue.toDouble(), sourValue.toDouble(), bitterValue.toDouble(),
-                    aftertasteValue.toDouble(), zestValue.toDouble(), balanceValue.toDouble()
+                    flavorValue, sourValue, bitterValue,
+                    aftertasteValue, zestValue, balanceValue
                 )
 
                 // 이미지 bitmap
@@ -366,6 +376,7 @@ class WriteReviewActivity : AppCompatActivity() {
     override fun onBackPressed() {
         //super.onBackPressed()
         MaterialDialog(this).show {
+            cornerRadius(16f)
             title(text = "주의")
             message(text = "나가시면 작성한 내용은 저장되지 않습니다. 메인 화면으로 가시겠습니까?")
             positiveButton(text = "확인") {

@@ -55,17 +55,17 @@ class ReviewsAdapter(
 
         binding.reviewRowContent.text = item.content
 
-        binding.reviewEvaluation.reviewFlavorBar.progress = flavor
+        binding.reviewEvaluation.reviewFlavorBar.progress = (flavor * 20).toInt()
         binding.reviewEvaluation.reviewFlavorValue.text = flavor.toString()
-        binding.reviewEvaluation.reviewAftertasteBar.progress = aftertaste * 20
+        binding.reviewEvaluation.reviewAftertasteBar.progress = (aftertaste * 20).toInt()
         binding.reviewEvaluation.reviewAftertasteValue.text = aftertaste.toString()
-        binding.reviewEvaluation.reviewSourBar.progress = sour * 20
+        binding.reviewEvaluation.reviewSourBar.progress = (sour * 20).toInt()
         binding.reviewEvaluation.reviewSourValue.text = sour.toString()
-        binding.reviewEvaluation.reviewZestBar.progress = zest * 20
+        binding.reviewEvaluation.reviewZestBar.progress = (zest * 20).toInt()
         binding.reviewEvaluation.reviewZestValue.text = zest.toString()
-        binding.reviewEvaluation.reviewBitterBar.progress = bitter * 20
+        binding.reviewEvaluation.reviewBitterBar.progress = (bitter * 20).toInt()
         binding.reviewEvaluation.reviewBitterValue.text = bitter.toString()
-        binding.reviewEvaluation.reviewBalanceBar.progress = balance * 20
+        binding.reviewEvaluation.reviewBalanceBar.progress = (balance * 20).toInt()
         binding.reviewEvaluation.reviewBalanceValue.text = balance.toString()
 
         // 매장 이미지 가져오기
