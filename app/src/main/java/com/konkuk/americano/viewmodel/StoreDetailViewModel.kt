@@ -10,6 +10,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.gson.Gson
+import com.konkuk.americano.API.List.GetStoreDetailAPI
+import com.konkuk.americano.API.List.UploadImageAPI
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Model.StoreReviewData
 import com.konkuk.americano.model.StoreDetailData
@@ -18,8 +20,7 @@ import com.konkuk.americano.repo.StoreReviewsRepo
 import org.json.JSONArray
 import org.json.JSONObject
 
-class StoreDetailViewModel(val context: Context, val activity: Activity) {
-    //var storeDetailLiveData: MutableLiveData<StoreDetailData> = MutableLiveData()
+class StoreDetailViewModel(val context: Context, val activity: Activity, val storeId: Int) {
     var responseOk = MutableLiveData<Int>()
     var selectedStoreId = MutableLiveData<Int>()
 
@@ -28,9 +29,28 @@ class StoreDetailViewModel(val context: Context, val activity: Activity) {
 
     var images: MutableLiveData<ArrayList<Bitmap>> = MutableLiveData(arrayListOf())
 
+    var editResponseOk = MutableLiveData<Int>()
+
     init {
         //storeDetailLiveData.postValue(StoreDetailRepo.getInstance().getModel())
         responseOk.value = 0
+        editResponseOk.value = 0
+        GetStoreDetailAPI.call(storeId,
+            object : RetrofitClient.callback {
+                override fun callbackMethod(isSuccessful: Boolean, result: String?) {
+                    if (isSuccessful && result != null) {
+                        val jsonObject = JSONObject(result)
+                        val gson = Gson()
+                        var tData : StoreDetailData? = null
+                        tData = gson.fromJson(jsonObject.toString(), StoreDetailData::class.java)
+                        StoreDetailRepo.getInstance().setModel(tData!!)
+                        storeDetailData.postValue(StoreDetailRepo.getInstance().getModel())
+                        selectedStoreId.value = storeId
+                    } else {
+                        activity.finish() // ???????
+                    }
+                }
+            })
     }
 
     fun setLiveData(storeId: Int) {
@@ -56,8 +76,7 @@ class StoreDetailViewModel(val context: Context, val activity: Activity) {
                         activity.finish() // ???????
                     }
                 }
-            },
-            selectedStoreId.value!!
+            }
         )
     }
 
@@ -110,10 +129,41 @@ class StoreDetailViewModel(val context: Context, val activity: Activity) {
                         override fun onLoadCleared(placeholder: Drawable?) {
                             //TODO("Not yet implemented")
                         }
-
                     })
             }
             responseOk.value = responseOk.value!! + 1
         }
+    }
+
+    fun callEditStoreAPI(title: String, content: String, images: ArrayList<Bitmap>) {
+        var imgStringArray = ArrayList<String>()
+
+        UploadImageAPI.call(context, images, object : RetrofitClient.callback {
+            override fun imageUploadCallback(isSuccessful: Boolean, result: JSONArray) {
+                // super.imageUploadCallback(isSuccessful, result)
+                if (isSuccessful) {
+                    for (i in 0 until result.length()) {
+                        imgStringArray.add(result.get(i) as String)
+                        Log.i("img url $i", (result.get(i) as String).toString())
+                    }
+                    val resultJsonArray = JSONArray(imgStringArray)
+
+                    StoreDetailRepo.getInstance().callPutEditStoreAPI(title, content, resultJsonArray.toString(),
+                    object : RetrofitClient.callback {
+                        override fun callbackMethod(isSuccessful: Boolean, result: String?) {
+                            // super.callbackMethod(isSuccessful, result)
+                            Log.i("DATA", "$title \n $content \n $isSuccessful")
+                            if (isSuccessful) {
+                                editResponseOk.value = 1
+                            } else {
+                                editResponseOk.value = -1
+                            }
+                        }
+                    })
+                } else {
+                    editResponseOk.value = -1
+                }
+            }
+        })
     }
 }

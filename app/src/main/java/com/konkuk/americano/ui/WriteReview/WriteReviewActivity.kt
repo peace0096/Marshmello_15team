@@ -26,8 +26,6 @@ class WriteReviewActivity : AppCompatActivity() {
 
     lateinit var viewModel: WriteReviewViewModel
 
-    var storeId = -1
-
     var flavorValue = 1.0
     var sourValue = 1.0
     var bitterValue = 1.0
@@ -47,19 +45,11 @@ class WriteReviewActivity : AppCompatActivity() {
 
         init()
 
-        //for test
-//        val tData = WriteReviewData(
-//            3,
-//            "TEST REVIEW22222",
-//            arrayListOf(),
-//            4.0,
-//            5.0,
-//            2.0,
-//            3.0,
-//            3.0,
-//            1.0
-//        )
-//        viewModel.callPostWriteReviewAPI(tData)
+        // 아래 구문은실행되어선 안됨
+        if (viewModel.selectedStoreId == null) {
+            Toast.makeText(this, "현재 선택된 매장이 없습니다.", Toast.LENGTH_SHORT).show()
+            finish()
+        }
     }
 
     private fun init() {
@@ -321,9 +311,9 @@ class WriteReviewActivity : AppCompatActivity() {
 
             positiveButton(text = "작성") { _ ->
                 // request server
-                // TODO storeId -> 현재 선택되어 있는 상점의 storeId에 대한 viewmodel에서 가져오기
-                // 또는 이 액티비티를 로드할 때 전 액티비티(지도)에서 데이터로 storeId를 받아서 사용하기
-                val storeId = 10 // temp
+
+                // 작성 버튼은 반드시 storedetail activity에서 선택된 상점이 있는 상태에서 clickable 하게 할 것
+                val storeId = viewModel.selectedStoreId
 
                 // 상세 후기 가져오기
                 val content = binding.writeReviewContentEditText.text.toString()
@@ -332,7 +322,7 @@ class WriteReviewActivity : AppCompatActivity() {
                 val images = arrayListOf<String>()
 
                 val data = WriteReviewData(
-                    storeId,
+                    storeId!!,
                     content,
                     images,
                     flavorValue, sourValue, bitterValue,

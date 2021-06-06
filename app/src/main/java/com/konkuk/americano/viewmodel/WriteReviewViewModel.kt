@@ -9,11 +9,17 @@ import com.konkuk.americano.API.List.UploadImageAPI
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.api.List.PostWriteReviewAPI
 import com.konkuk.americano.model.WriteReviewData
+import com.konkuk.americano.repo.StoreDetailRepo
 import org.json.JSONArray
 
 class WriteReviewViewModel(val context: Context, val activity: Activity) {
 
     var responseInt: MutableLiveData<Int> = MutableLiveData() // 응답 코드 1이 올라오면 성공
+    val selectedStoreId = StoreDetailRepo.getInstance().getModel()?.storeId // 매장이 선택되어져 있어야 됨
+
+
+    init {
+    }
 
     fun callPostWriteReviewAPI(data: WriteReviewData, images: ArrayList<Bitmap>) {
         var imgStringArray = ArrayList<String>()
