@@ -1,4 +1,4 @@
-package com.konkuk.americano.EditStore
+package com.konkuk.americano.UI.EditStore
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -101,9 +101,6 @@ class EditStoreActivity : AppCompatActivity() {
 
 
     }
-
-
-
 }
 
 

@@ -39,6 +39,11 @@ data class Review_Model(
     var zest : Double,
     @SerializedName("balance")
     @Expose
-    var balance : Double
-
+    var balance : Double,
+    @SerializedName("profileImage")
+    @Expose
+    var profileImage : ArrayList<String>,
+    @SerializedName("nickname")
+    @Expose
+    var nickname : String
 )
