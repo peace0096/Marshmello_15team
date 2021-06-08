@@ -15,10 +15,12 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.konkuk.americano.Model.StoreReviewData
 import com.konkuk.americano.R
 import com.konkuk.americano.databinding.ActivityStoreDetailBinding
+import com.konkuk.americano.repo.StoreDetailRepo
 import com.konkuk.americano.ui.WriteReview.WriteReviewActivity
 import com.konkuk.americano.viewmodel.StoreDetailViewModel
 import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.android.synthetic.main.activity_store_detail.view.*
+import java.util.*
 
 class StoreDetailActivity : AppCompatActivity() {
     lateinit var binding: ActivityStoreDetailBinding
@@ -62,20 +64,12 @@ class StoreDetailActivity : AppCompatActivity() {
     }
 
     private fun checkMyReview() {
+        binding.detailStoreEditBtn.visibility = View.GONE
+
         binding.detailStoreEditBox.visibility = View.GONE
-
         // repo에 있는 현재 로그인된 유저 아이디와 로드된 글의 유저 아이디 비교
-        // binding.detailStoreEditBtn 활성화
 
-        // 일단 임시로 always 활성화
         binding.apply {
-            if (/*userId == store userId*/true) {
-                detailStoreEditBtn.visibility = View.VISIBLE
-                nowEditFlag = 1
-            } else {
-                detailStoreEditBtn.visibility = View.GONE
-            }
-
             detailStoreEditBtn.setOnClickListener {
                 if (nowEditFlag == 0) {
 
@@ -236,6 +230,8 @@ class StoreDetailActivity : AppCompatActivity() {
         binding.detailStoreSwipe.setOnRefreshListener {
             Log.i("storeId", viewModel.selectedStoreId.value.toString())
 
+            viewModel.setLiveData(StoreDetailRepo.getInstance().getModel()!!.storeId)
+
             viewModel.responseOk.observe(this, Observer {
                 if (viewModel.responseOk.value == 3) {
                     Toast.makeText(this, "새로고침 성공", Toast.LENGTH_SHORT).show() // TODO temp
@@ -258,6 +254,7 @@ class StoreDetailActivity : AppCompatActivity() {
         viewModel.storeDetailData.observe(this, Observer {
             viewModel.callSetImages() // 매장 상세 정보가 load 완료됨 -> livedata 변경 감지 -> 이미지 가져오기
             showDetailOnScreen()
+            viewModel.callGetUserMeAPI() // 유저 userId 가져오기 -> 후에 observe 되고 비교 후 매장 편집 기능 제공
         })
         viewModel.images.observe(this, Observer {
             // adapter내용 변경
@@ -310,6 +307,23 @@ class StoreDetailActivity : AppCompatActivity() {
                 viewModel.setLiveData(storeId)
             } else if (it == -1) {
                 Toast.makeText(this, "매장 정보 수정에 실패했습니다.", Toast.LENGTH_SHORT).show()
+            }
+        })
+        viewModel.getUserIdOk.observe(this, Observer {
+            if (it == -1) {
+                // fail to get userId
+                // 실행 x
+                Toast.makeText(this, "본인 정보 확인 실패", Toast.LENGTH_SHORT).show()
+            } else {
+                if (StoreDetailRepo.getInstance().getModel()?.userId == it) {
+                    // 편집 버튼 보이게
+                    binding.detailStoreEditBtn.visibility = View.VISIBLE
+                    nowEditFlag = 1
+                } else {
+                    // 편집 버튼 안보이게 (기본적으로 안보이긴함)
+                    binding.detailStoreEditBtn.visibility = View.GONE
+                    nowEditFlag = 0
+                }
             }
         })
     }

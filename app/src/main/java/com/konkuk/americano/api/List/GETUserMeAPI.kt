@@ -1,5 +1,6 @@
 package com.konkuk.americano.API.List
 
+import android.util.Log
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Repo.UserMe_Repo
 import org.json.JSONException
@@ -25,11 +26,12 @@ object GETUserMeAPI {
                     }
                 }
                 catch (e : JSONException){
-                    callback.callbackMethod(false, "잠시 후 시도해주세요 ")
+                    callback.callbackMethod(false, "잠시 후 시도해주세요2 ")
+                    Log.i("ERROR", e.printStackTrace().toString())
                 }
             }
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                callback.callbackMethod(false, "잠시 후 시도해주세요 ")
+                callback.callbackMethod(false, "잠시 후 시도해주세요3 ")
             }
         })
 
