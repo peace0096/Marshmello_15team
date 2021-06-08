@@ -1,9 +1,8 @@
-package com.konkuk.americano
+package com.konkuk.americano.UI.Setting
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.konkuk.americano.UI.CreateReview.CreateReviewActivity
 import com.konkuk.americano.UI.CreateStore.CreateStoreActivity
 import com.konkuk.americano.UI.MyReview.MyReviewActivity
 import com.konkuk.americano.UI.MyStore.MyStoreActivity
