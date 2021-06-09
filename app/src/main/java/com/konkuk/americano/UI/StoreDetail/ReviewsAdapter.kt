@@ -1,4 +1,4 @@
-package com.konkuk.americano.ui.StoreDetail
+package com.konkuk.americano.UI.StoreDetail
 
 import android.content.Context
 import android.util.Log

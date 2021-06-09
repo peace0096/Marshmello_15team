@@ -1,4 +1,4 @@
-package com.konkuk.americano.ui.CreateReview
+package com.konkuk.americano.UI.CreateReview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,11 +1,11 @@
-package com.konkuk.americano.ui.LoginRegister
+package com.konkuk.americano.UI.LoginRegister
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.konkuk.americano.ui.Map.MapActivity
+import com.konkuk.americano.UI.Map.MapActivity
 import com.konkuk.americano.ViewModel.UserViewModel
 import com.konkuk.americano.databinding.ActivityLoginBinding
 

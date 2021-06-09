@@ -1,4 +1,4 @@
-package com.konkuk.americano.ui.StoreDetail
+package com.konkuk.americano.UI.StoreDetail
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -16,7 +16,7 @@ import com.konkuk.americano.Model.StoreReviewData
 import com.konkuk.americano.R
 import com.konkuk.americano.databinding.ActivityStoreDetailBinding
 import com.konkuk.americano.repo.StoreDetailRepo
-import com.konkuk.americano.ui.WriteReview.WriteReviewActivity
+import com.konkuk.americano.UI.WriteReview.WriteReviewActivity
 import com.konkuk.americano.viewmodel.StoreDetailViewModel
 import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.android.synthetic.main.activity_store_detail.view.*

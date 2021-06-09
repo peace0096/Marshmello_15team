@@ -1,4 +1,4 @@
-package com.konkuk.americano.ui.MyStore
+package com.konkuk.americano.UI.MyStore
 
 import android.view.LayoutInflater
 import android.view.View

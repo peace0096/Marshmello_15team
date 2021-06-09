@@ -1,4 +1,4 @@
-package com.konkuk.americano.ui.WriteReview
+package com.konkuk.americano.UI.WriteReview
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

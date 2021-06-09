@@ -1,4 +1,4 @@
-package com.konkuk.americano.ui.Map
+package com.konkuk.americano.UI.Map
 
 import android.content.Context
 import android.content.DialogInterface
@@ -31,14 +31,14 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.konkuk.americano.ui.MyStore.MyStoreActivity
+import com.konkuk.americano.UI.MyStore.MyStoreActivity
 import com.konkuk.americano.R
-import com.konkuk.americano.ui.Setting.SettingActivity
+import com.konkuk.americano.UI.Setting.SettingActivity
 import com.konkuk.americano.ViewModel.UserViewModel
 import com.konkuk.americano.databinding.ActivityMapBinding
 import com.konkuk.americano.Model.StoreReviewData
 import com.konkuk.americano.Repo.UserMe_Repo
-import com.konkuk.americano.ui.StoreDetail.ReviewsAdapter
+import com.konkuk.americano.UI.StoreDetail.ReviewsAdapter
 import com.konkuk.americano.ViewModel.ReviewsViewModel
 
 class MapActivity : AppCompatActivity() {

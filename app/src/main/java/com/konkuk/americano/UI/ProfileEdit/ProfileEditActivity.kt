@@ -1,4 +1,4 @@
-package com.konkuk.americano.ui.ProfileEdit
+package com.konkuk.americano.UI.ProfileEdit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

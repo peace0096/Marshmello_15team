@@ -1,4 +1,4 @@
-package com.konkuk.americano.ui.LoginRegister
+package com.konkuk.americano.UI.LoginRegister
 
 import android.Manifest
 import android.content.pm.PackageManager
