@@ -4,15 +4,20 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.location.LocationManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
+import android.util.DisplayMetrics
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -31,6 +36,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.maps.model.Marker
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.konkuk.americano.MyStore.MyStoreActivity
 import com.konkuk.americano.R
@@ -50,6 +56,10 @@ class MapActivity : AppCompatActivity() {
     private val reviewsViewModel = ReviewsViewModel()
     private lateinit var adapter:ReviewsAdapter
 
+    lateinit var marker_view: View
+    lateinit var marker_image: ImageView
+    lateinit var marker_title: TextView
+    lateinit var marker_content: TextView
 
     var loc = LatLng(37.554752, 126.970631) //default
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -173,7 +183,39 @@ class MapActivity : AppCompatActivity() {
             googleMap = it
             initLocation()
             initMapListener()
+            initMapAdapter()
         }
+    }
+
+    fun initMapAdapter() {
+        googleMap.setInfoWindowAdapter(object:GoogleMap.InfoWindowAdapter {
+            override fun getInfoContents(marker: com.google.android.gms.maps.model.Marker): View? {
+                val marker_view = LayoutInflater.from(this@MapActivity).inflate(R.layout.store_marker, null)
+                val marker_image = marker_view.findViewById<ImageView>(R.id.marker_image)
+                val marker_title = marker_view.findViewById<TextView>(R.id.marker_title)
+                val marker_content = marker_view.findViewById<TextView>(R.id.marker_content)
+
+                val list = UserMe_Repo.getInstance().getStoreModel()
+                for(e in list) {
+                    if(marker.tag == e.storeId) {
+                        marker_title.text = e.title
+                        marker_content.text = e.content
+                        Log.d("image", "${e.image.size}")
+                        if(e.image.size != 0) {
+                            var uri = Uri.parse(e.image[0])
+                            Glide.with(this@MapActivity)
+                                .load(uri)
+                                .into(marker_image)
+                        }
+                    }
+                }
+                return marker_view
+            }
+
+            override fun getInfoWindow(p0: com.google.android.gms.maps.model.Marker): View? {
+                return null
+            }
+        })
     }
 
     private fun initMapListener() {
