@@ -79,9 +79,29 @@ interface APIInterface {
     ): Call<String?>
 
     @Headers("Content-Type: application/json")
+    @GET("review/store")
+    fun getStoreReviews(
+        @Header("Authorization") token: String,
+        @Query("storeId") storeId: Int
+    ): Call<String?>
+
+    @Headers("Content-Type: application/json")
+    @POST("review/")
+    fun postWriteReview(
+        @Header("Authorization") token: String,
+        @Body body: String
+    ): Call<String?>
+
+    @Headers("Content-Type: application/json")
     @GET("review/me")
-    fun getmyreview(
-        @Header("Authorization") token : String
+    fun getMyReviews(
+        @Header("Authorization") token: String
+    ): Call<String?>
+
+    @Headers("Content-Type: application/json")
+    @GET("review/recent")
+    fun getRecentReview(
+        @Header("Authorization") token: String
     ): Call<String?>
 
 
