@@ -1,4 +1,4 @@
-package com.konkuk.americano.viewmodel
+package com.konkuk.americano.ViewModel
 
 import android.app.Activity
 import android.content.Context
@@ -10,12 +10,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.gson.Gson
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+import com.konkuk.americano.API.List.GetStoreDetailAPI
 import com.konkuk.americano.API.List.UploadImageAPI
 import com.konkuk.americano.API.RetrofitClient
+import com.konkuk.americano.Model.StoreDetailData
 import com.konkuk.americano.Model.StoreReviewData
-import com.konkuk.americano.model.StoreDetailData
-import com.konkuk.americano.repo.StoreDetailRepo
-import com.konkuk.americano.repo.StoreReviewsRepo
+import com.konkuk.americano.Repo.UserMe_Repo
+import com.konkuk.americano.Repo.StoreDetailRepo
+import com.konkuk.americano.Repo.StoreReviewsRepo
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -29,12 +33,28 @@ class StoreDetailViewModel(val context: Context, val activity: Activity, val sto
     var images: MutableLiveData<ArrayList<Bitmap>> = MutableLiveData(arrayListOf())
 
     var editResponseOk = MutableLiveData<Int>()
+    var getUserIdOk = MutableLiveData<Int>()
 
     init {
         //storeDetailLiveData.postValue(StoreDetailRepo.getInstance().getModel())
         responseOk.value = 0
         editResponseOk.value = 0
-        selectedStoreId.value = storeId
+        GetStoreDetailAPI.call(storeId,
+            object : RetrofitClient.callback {
+                override fun callbackMethod(isSuccessful: Boolean, result: String?) {
+                    if (isSuccessful && result != null) {
+                        val jsonObject = JSONObject(result)
+                        val gson = Gson()
+                        var tData : StoreDetailData? = null
+                        tData = gson.fromJson(jsonObject.toString(), StoreDetailData::class.java)
+                        StoreDetailRepo.getInstance().setModel(tData!!)
+                        storeDetailData.postValue(StoreDetailRepo.getInstance().getModel())
+                        selectedStoreId.value = storeId
+                    } else {
+                        activity.finish() // ???????
+                    }
+                }
+            })
     }
 
     fun setLiveData(storeId: Int) {
@@ -150,4 +170,40 @@ class StoreDetailViewModel(val context: Context, val activity: Activity, val sto
             }
         })
     }
+    fun callGetUserMeAPI() {
+        UserMe_Repo.getInstance().callGetUserMeAPI(object: RetrofitClient.callback {
+            override fun callbackMethod(isSuccessful: Boolean, result: String?) {
+                // super.callbackMethod(isSuccessful, result)
+                if (isSuccessful && result != null) {
+                    val jsonObject = JSONObject(result)
+                    val gson = Gson()
+                    val data = gson.fromJson(jsonObject.toString(), TUser::class.java)
+                    Log.i("DATA", data.toString())
+                    getUserIdOk.postValue(data.userId)
+                } else {
+                    getUserIdOk.postValue(-1)
+                }
+            }
+        })
+    }
+    data class TUser(
+        @SerializedName("userId")
+        @Expose
+        val userId: Int,
+        @SerializedName("loginId")
+        @Expose
+        val loginId:String,
+        @SerializedName("nickname")
+        @Expose
+        val nickname:String,
+        @SerializedName("profileImage")
+        @Expose
+        val profileImage: ArrayList<String>,
+        @SerializedName("latitude")
+        @Expose
+        val latitude:Double?,
+        @SerializedName("longitude")
+        @Expose
+        val langitude:Double?
+    )
 }

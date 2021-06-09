@@ -4,7 +4,6 @@ import com.konkuk.americano.API.List.*
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Model.Store_Model
 import com.konkuk.americano.Model.UserMe_Model
-import javax.security.auth.callback.Callback
 
 class UserMe_Repo {
 

@@ -15,9 +15,9 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.konkuk.americano.Model.StoreReviewData
 import com.konkuk.americano.R
 import com.konkuk.americano.databinding.ActivityStoreDetailBinding
-import com.konkuk.americano.repo.StoreDetailRepo
+import com.konkuk.americano.Repo.StoreDetailRepo
 import com.konkuk.americano.UI.WriteReview.WriteReviewActivity
-import com.konkuk.americano.viewmodel.StoreDetailViewModel
+import com.konkuk.americano.ViewModel.StoreDetailViewModel
 import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.android.synthetic.main.activity_store_detail.view.*
 import java.util.*
@@ -65,6 +65,7 @@ class StoreDetailActivity : AppCompatActivity() {
 
     private fun checkMyReview() {
         binding.detailStoreEditBtn.visibility = View.GONE
+        binding.detailStoreContent.isEnabled = false
 
         binding.detailStoreEditBox.visibility = View.GONE
         // repo에 있는 현재 로그인된 유저 아이디와 로드된 글의 유저 아이디 비교
@@ -315,6 +316,8 @@ class StoreDetailActivity : AppCompatActivity() {
                 // 실행 x
                 Toast.makeText(this, "본인 정보 확인 실패", Toast.LENGTH_SHORT).show()
             } else {
+                Log.i("asdf",StoreDetailRepo.getInstance().getModel()?.userId.toString())
+                Log.i("aaaa", it.toString())
                 if (StoreDetailRepo.getInstance().getModel()?.userId == it) {
                     // 편집 버튼 보이게
                     binding.detailStoreEditBtn.visibility = View.VISIBLE

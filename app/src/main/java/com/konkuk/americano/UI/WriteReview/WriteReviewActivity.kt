@@ -15,7 +15,7 @@ import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
 import com.konkuk.americano.R
 import com.konkuk.americano.databinding.ActivityWriteReviewBinding
-import com.konkuk.americano.model.WriteReviewData
+import com.konkuk.americano.Model.WriteReviewData
 import com.konkuk.americano.viewmodel.WriteReviewViewModel
 import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.android.synthetic.main.check_write_review_dialog.view.*
