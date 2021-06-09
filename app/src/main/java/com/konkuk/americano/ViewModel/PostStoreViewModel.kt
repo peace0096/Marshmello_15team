@@ -14,6 +14,7 @@ import com.gun0912.tedpermission.PermissionListener
 import com.konkuk.americano.API.List.PostStoreAPI
 import com.konkuk.americano.API.List.UploadImageAPI
 import com.konkuk.americano.API.RetrofitClient
+import com.konkuk.americano.Repo.UserMe_Repo
 import gun0912.tedimagepicker.builder.TedImagePicker
 import org.json.JSONArray
 
@@ -26,15 +27,10 @@ class PostStoreViewModel(val context : Context,val activity : Activity) : ViewMo
 
     private var imgarr = ArrayList<MutableLiveData<Bitmap?>>()
 
-
-
-
     init {
         image1.value = null
         image2.value = null
         image3.value = null
-
-
 
         val permissionlistener: PermissionListener = object : PermissionListener {
             override fun onPermissionGranted() {
@@ -169,10 +165,17 @@ class PostStoreViewModel(val context : Context,val activity : Activity) : ViewMo
             return
         }
 
+        var lat = UserMe_Repo.getInstance().getModel().latitude
+        var lon = UserMe_Repo.getInstance().getModel().langitude
+
+        if (lat == null || lon == null) {
+            Toast.makeText(context,"위치를 참조 할 수 없습니다",Toast.LENGTH_SHORT).show()
+        }
+
         UploadImageAPI.call(context,bitarray,object : RetrofitClient.callback{
             override fun imageUploadCallback(isSuccessful: Boolean, result: JSONArray) {
                 if (isSuccessful){
-                    PostStoreAPI.call(title,content,37.0 ,127.0,result.toString(), object : RetrofitClient.callback {
+                    PostStoreAPI.call(title,content,lat!! ,lon!!,result.toString(), object : RetrofitClient.callback {
                         override fun callbackMethod(isSuccessful: Boolean, result: String?) {
                             if (isSuccessful){
                                 Toast.makeText(context,"매장 등록을 성공 하셨습니다.",Toast.LENGTH_SHORT).show()

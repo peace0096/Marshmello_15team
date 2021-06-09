@@ -244,7 +244,8 @@ class StoreDetailActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         // TODO 지도에서 선택된 매장 id로...
-        viewModel = StoreDetailViewModel(this, this, 12)
+        val storeId = intent.getIntExtra("storeId", 1)
+        viewModel = StoreDetailViewModel(this, this, storeId)
     }
 
     private fun initObserver() {

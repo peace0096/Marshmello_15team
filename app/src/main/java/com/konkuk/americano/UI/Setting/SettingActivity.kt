@@ -65,6 +65,10 @@ class SettingActivity : AppCompatActivity() {
             settingLogout.settingBtnBtn.setOnClickListener {
                 viewmodel.processLogout()
             }
+
+            settingBackBtn.setOnClickListener {
+                finish()
+            }
         }
 
     }

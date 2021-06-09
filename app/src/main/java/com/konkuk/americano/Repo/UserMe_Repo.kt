@@ -1,9 +1,7 @@
 package com.konkuk.americano.Repo
 
 
-import com.konkuk.americano.API.List.DeleteUserAPI
-import com.konkuk.americano.API.List.GETUserMeAPI
-import com.konkuk.americano.API.List.PutUserAPI
+import com.konkuk.americano.API.List.*
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Model.Store_Model
 import com.konkuk.americano.Model.UserMe_Model
@@ -56,7 +54,6 @@ class UserMe_Repo {
         PutUserAPI.call(nickname,profileImage,callback)
     }
 
-
     fun callGetUserMeAPI(callback : RetrofitClient.callback){
         GETUserMeAPI.call(callback)
     }
@@ -80,14 +77,6 @@ class UserMe_Repo {
     fun callPutUserLocation(latitude: Double, longitude:Double, callback: RetrofitClient.callback) {
         PutUserLocationAPI.call(latitude, longitude, callback)
     }
-
-    fun callDeleteUserAPI(callback: RetrofitClient.callback){
-        DeleteUserAPI.call(callback)
-    }
-
-
-
-
 
 
 }

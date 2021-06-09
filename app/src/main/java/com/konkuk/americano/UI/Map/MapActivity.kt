@@ -39,8 +39,11 @@ import com.konkuk.americano.ViewModel.UserViewModel
 import com.konkuk.americano.databinding.ActivityMapBinding
 import com.konkuk.americano.Model.StoreReviewData
 import com.konkuk.americano.Repo.UserMe_Repo
+import com.konkuk.americano.UI.CreateStore.CreateStoreActivity
+import com.konkuk.americano.UI.MyReview.MyReviewActivity
 
 import com.konkuk.americano.UI.StoreDetail.ReviewsAdapter
+import com.konkuk.americano.UI.StoreDetail.StoreDetailActivity
 import com.konkuk.americano.ViewModel.ReviewsViewModel
 
 class MapActivity : AppCompatActivity() {
@@ -143,10 +146,14 @@ class MapActivity : AppCompatActivity() {
 
             override fun onLocationResult(location: LocationResult) {
                 if(location.locations.size == 0) return
-
                 userViewModel.updateUserLocation(location.locations[location.locations.size-1].latitude, location.locations[location.locations.size-1].longitude)
                 loc = LatLng(location.locations[location.locations.size-1].latitude, location.locations[location.locations.size-1].longitude)
-                if(!isMapLoad) {
+
+
+                userViewModel.usermodel.value?.latitude = loc.latitude
+                userViewModel.usermodel.value?.langitude = loc.latitude
+                Log.d("user", userViewModel.usermodel.value?.latitude.toString())
+                    if(!isMapLoad) {
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f))
                     drawMarkers()
                     isMapLoad = true
@@ -209,8 +216,10 @@ class MapActivity : AppCompatActivity() {
 
     private fun initMapListener() {
         googleMap.setOnInfoWindowClickListener {
-            val storeId = it.tag
-            Log.d("touch", storeId.toString())
+            val storeId = it.tag as Int
+            val intent = Intent(this, StoreDetailActivity::class.java)
+            intent.putExtra("storeId", storeId)
+            startActivity(intent)
         }
 
         googleMap.setOnMapClickListener {
@@ -236,16 +245,13 @@ class MapActivity : AppCompatActivity() {
 
             navigationView.setNavigationItemSelectedListener {
                 when(it.itemId) {
-                    R.id.myinfo -> {
-
-                    }
                     R.id.store -> {
                         val intent = Intent(baseContext, MyStoreActivity::class.java)
                         startActivity(intent)
                     }
                     R.id.review -> {
-//                        val intent = Intent(baseContext, MyStoreActivity::class.java)
-//                        startActivity(intent)
+                        val intent = Intent(baseContext, MyReviewActivity::class.java)
+                        startActivity(intent)
                     }
                     R.id.setting -> {
                         val intent = Intent(baseContext, SettingActivity::class.java)
@@ -264,6 +270,11 @@ class MapActivity : AppCompatActivity() {
                 reviewsViewModel.loadRecentReviews()
                 drawMarkers()
                 moveCameraMyLocation()
+            }
+
+            addLocation.setOnClickListener {
+                val intent = Intent(this@MapActivity, CreateStoreActivity::class.java)
+                startActivity(intent)
             }
         }
         reviewsViewModel.loadRecentReviews()
