@@ -3,9 +3,11 @@ package com.konkuk.americano.UI.Setting
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.konkuk.americano.UI.CreateReview.CreateReviewActivity
+import com.konkuk.americano.UI.MyStore.MyStoreActivity
+import com.konkuk.americano.UI.ProfileEdit.ProfileEditActivity
 import com.konkuk.americano.UI.CreateStore.CreateStoreActivity
 import com.konkuk.americano.UI.MyReview.MyReviewActivity
-import com.konkuk.americano.UI.MyStore.MyStoreActivity
 import com.konkuk.americano.ViewModel.SettingViewModel
 import com.konkuk.americano.databinding.ActivitySettingBinding
 
@@ -41,13 +43,13 @@ class SettingActivity : AppCompatActivity() {
 
 
             settingProfileEdit.settingBtnBtn.setOnClickListener {
-                val intent = Intent(this@SettingActivity, CreateStoreActivity::class.java)
+                val intent = Intent(this@SettingActivity, ProfileEditActivity::class.java)
                 startActivity(intent)
             }
 
             settingMystoreList.settingBtnBtn.setOnClickListener {
 //                val intent = Intent(this@SettingActivity,CreateStoreActivity::class.java)
-                val intent = Intent(this@SettingActivity,MyStoreActivity::class.java)
+                val intent = Intent(this@SettingActivity, MyStoreActivity::class.java)
                 startActivity(intent)
             }
 

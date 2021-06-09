@@ -6,7 +6,6 @@ import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.konkuk.americano.API.RetrofitClient
-import com.konkuk.americano.Model.UserMe_Model
 import com.konkuk.americano.Repo.UserMe_Repo
 
 

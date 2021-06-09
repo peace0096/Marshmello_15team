@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".UI.MyStore.MyStoreActivity">
 
-
     <View
         android:id="@+id/my_store_list_nav_bar"
         android:layout_width="match_parent"

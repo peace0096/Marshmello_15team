@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.media.Image
 import android.net.Uri
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -14,8 +13,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.gun0912.tedpermission.PermissionListener
-import com.konkuk.americano.API.List.PostStoreAPI
-import com.konkuk.americano.API.List.PutMyStoreAPI
 import com.konkuk.americano.API.List.UploadImageAPI
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Model.Store_Model

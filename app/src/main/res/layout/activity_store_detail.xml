@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.StoreDetail.StoreDetailActivity">
+    tools:context=".UI.StoreDetail.StoreDetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -44,6 +44,14 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/detailStoreEditBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:text="편집"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
@@ -68,14 +76,41 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/storeImagesRecyclerView"
+                        <FrameLayout
+                            android:id="@+id/detailStoreFrameLayout"
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:orientation="horizontal"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+                            android:layout_height="match_parent"
+                            android:padding="5dp">
 
-                        </androidx.recyclerview.widget.RecyclerView>
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/storeImagesRecyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="150dp"
+                                android:orientation="horizontal"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+                            </androidx.recyclerview.widget.RecyclerView>
+
+                            <LinearLayout
+                                android:id="@+id/detailStoreEditBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/detailStoreEditTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:inputType="textPersonName" />
+
+                                <include
+                                    android:id="@+id/detailStoreEditImages"
+                                    layout="@layout/image_add_layout" />
+                            </LinearLayout>
+
+
+                        </FrameLayout>
 
                         <LinearLayout
                             android:id="@+id/detailshop_main_layout"
@@ -84,17 +119,19 @@
                             android:background="#00FFFFFF"
                             android:orientation="vertical">
 
-                            <TextView
+                            <EditText
                                 android:id="@+id/detailStoreContent"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/black_round_boarder"
                                 android:padding="20dp"
-                                android:text="아이스커밒 - 1500원\와이파이 자주 끊김aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
                                 android:textColor="#000000"
+                                android:textColorLink="#FFFFFF"
                                 android:textSize="15sp" />
 
                             <LinearLayout
-                                android:id="@+id/review_statistics_layout"
+                                android:id="@+id/detailStoreEvaulationLayout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="15dp"

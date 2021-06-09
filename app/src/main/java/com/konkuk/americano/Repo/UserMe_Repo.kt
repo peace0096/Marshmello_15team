@@ -7,7 +7,6 @@ import com.konkuk.americano.API.List.PutUserAPI
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Model.Store_Model
 import com.konkuk.americano.Model.UserMe_Model
-import javax.security.auth.callback.Callback
 
 class UserMe_Repo {
 
@@ -27,8 +26,8 @@ class UserMe_Repo {
     private lateinit var model : UserMe_Model
     private lateinit var listStoreModel:ArrayList<Store_Model>
 
-    private var token : String = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjAzMDQwOH0.MEQTtQSf9NbwxoWRi6rj6EmmcGrZma7SdOpePiSH434"
-
+    //private var token : String = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyMjAzMDQwOH0.MEQTtQSf9NbwxoWRi6rj6EmmcGrZma7SdOpePiSH434"
+    private var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTYyMjIyNzIwNH0.mDR5xu4O2fV7yxzjm1JBM8qqHSF7ufmvv7COEp2shho" // kwy
 
     fun setModel(model : UserMe_Model){
         this.model = model
@@ -85,6 +84,8 @@ class UserMe_Repo {
     fun callDeleteUserAPI(callback: RetrofitClient.callback){
         DeleteUserAPI.call(callback)
     }
+
+
 
 
 
