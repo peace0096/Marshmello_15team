@@ -34,7 +34,7 @@ class SettingActivity : AppCompatActivity() {
     private fun init(){
 
         binding.apply{
-            settingProfileEdit.settingBtnTitle.text = "프로플 수정하기 "
+            settingProfileEdit.settingBtnTitle.text = "프로필 수정하기 "
             settingMystoreList.settingBtnTitle.text = "내가 추가한 매장"
             settingMyreviewList.settingBtnTitle.text = "내가 쓴 후기들"
             settingLogout.settingBtnTitle.text = "로그아웃"

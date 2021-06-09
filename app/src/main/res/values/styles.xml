@@ -8,6 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- for Writer Review activity -->
+    <style name="AppTheme.Custom" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="md_color_title">@color/colorPrimary</item>
+        <item name="md_color_button_text">@color/black</item>
+    </style>
+
     <!--구분선 divider-->
     <style name="divider">
         <item name="android:layout_width">match_parent</item>

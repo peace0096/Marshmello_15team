@@ -317,8 +317,6 @@ class StoreDetailActivity : AppCompatActivity() {
                 // 실행 x
                 Toast.makeText(this, "본인 정보 확인 실패", Toast.LENGTH_SHORT).show()
             } else {
-                Log.i("asdf",StoreDetailRepo.getInstance().getModel()?.userId.toString())
-                Log.i("aaaa", it.toString())
                 if (StoreDetailRepo.getInstance().getModel()?.userId == it) {
                     // 편집 버튼 보이게
                     binding.detailStoreEditBtn.visibility = View.VISIBLE

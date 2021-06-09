@@ -32,9 +32,10 @@
         <activity android:name=".UI.ProfileEdit.ProfileEditActivity" />
         <activity android:name=".UI.Setting.SettingActivity"/>
         <activity android:name=".UI.MyReview.MyReviewActivity"/>
-        <activity android:name=".UI.WriteReview.WriteReviewActivity" />
+        <activity android:name=".UI.WriteReview.WriteReviewActivity"
+            android:theme="@style/AppTheme.Custom"/>
         <activity android:name=".UI.StoreDetail.StoreDetailActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/AppTheme.Custom">
         </activity>
         <activity android:name=".UI.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

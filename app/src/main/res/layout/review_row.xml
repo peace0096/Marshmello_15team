@@ -16,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="샘플 텍스트 샘플 텍스트 샘플 텍스트 샘플 텍스트 샘플 텍스트샘플 텍스트 샘플 텍스트 샘플 텍스트 샘플 텍스트 샘플 텍스트 샘플 텍스트 샘플 텍스트샘플 텍스트 샘플 텍스트 샘플 텍스트 샘플 텍스트 샘플 텍스트 샘플 텍스트 샘플 텍스트샘플 텍스트 샘플 텍스트"
         android:textColor="#FFFFFF" />
 
     <include
@@ -36,8 +35,7 @@
             android:layout_height="100dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/sample_cafe1" />
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/review_image2"
@@ -45,16 +43,14 @@
             android:layout_height="100dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/sample_cafe2" />
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/review_image3"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/sample_cafe3" />
+            android:scaleType="centerCrop" />
     </LinearLayout>
 
     <View

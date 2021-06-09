@@ -22,11 +22,10 @@
         android:id="@+id/create_review_seekbarbox_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/create_review_seekbarbox_title"
-        android:text="(1.0 / 5.0)"
         android:layout_marginEnd="5dp"
-        />
+        android:text="1.0 / 5.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create_review_seekbarbox_title" />
     <SeekBar
         android:id="@+id/create_review_seekbarbox_seekbar"
         android:layout_width="0dp"
