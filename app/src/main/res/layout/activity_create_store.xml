@@ -8,6 +8,7 @@
     tools:context=".UI.CreateStore.CreateStoreActivity">
 
 
+
     <View
         android:id="@+id/createstore_nav_bar"
         android:layout_width="match_parent"

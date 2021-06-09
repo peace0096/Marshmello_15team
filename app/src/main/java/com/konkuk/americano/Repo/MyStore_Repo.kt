@@ -1,9 +1,12 @@
 package com.konkuk.americano.Repo
 
+import androidx.lifecycle.MutableLiveData
 import com.konkuk.americano.API.List.GetMyStoreAPI
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Model.Store_Model
 import com.konkuk.americano.Model.UserMe_Model
+
+import com.konkuk.americano.Model.StoreReviewData
 
 class MyStore_Repo {
     companion object {
@@ -32,11 +35,5 @@ class MyStore_Repo {
     fun callMyStoreAPI(callback : RetrofitClient.callback) {
         GetMyStoreAPI.call(callback)
     }
-
-
-
-
-
-
 
 }

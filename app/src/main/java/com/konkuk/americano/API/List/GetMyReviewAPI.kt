@@ -11,7 +11,9 @@ import retrofit2.Response
 object GetMyReviewAPI {
 
     fun call(callback: RetrofitClient.callback) {
-        RetrofitClient.getBaseClient().getmyreview(UserMe_Repo.getInstance().gettoken())
+
+        RetrofitClient.getBaseClient().getMyReviews(UserMe_Repo.getInstance().gettoken())
+
             .enqueue(object :
                 Callback<String?> {
                 override fun onResponse(call: Call<String?>, response: Response<String?>) {

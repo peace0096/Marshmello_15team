@@ -8,6 +8,7 @@
 
 
 
+
     <View
         android:id="@+id/editstore_nav_bar"
         android:layout_width="match_parent"
