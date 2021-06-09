@@ -33,7 +33,6 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    //TODO 로그인 예외처리 해야함
     private fun init() {
         binding.apply {
             loginBtn.setOnClickListener {
@@ -41,7 +40,6 @@ class LoginActivity : AppCompatActivity() {
                 val password = passwordEditText.text.toString()
                 userViewModel.login(id, password)
             }
-
 
             registerText.setOnClickListener {
                 val intent = Intent(baseContext, RegisterActivity::class.java)
