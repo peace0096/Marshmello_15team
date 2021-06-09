@@ -1,4 +1,4 @@
-package com.konkuk.americano.ui.storedetail
+package com.konkuk.americano.UI.StoreDetail
 
 import android.graphics.Bitmap
 import android.view.LayoutInflater

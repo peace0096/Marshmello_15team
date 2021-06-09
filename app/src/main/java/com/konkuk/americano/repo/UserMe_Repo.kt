@@ -1,6 +1,5 @@
 package com.konkuk.americano.Repo
 
-import android.graphics.Bitmap
 import com.konkuk.americano.API.List.*
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Model.Store_Model

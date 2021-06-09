@@ -1,4 +1,4 @@
-package com.konkuk.americano.MyStore
+package com.konkuk.americano.UI.MyStore
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,12 +6,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.konkuk.americano.EditStore.EditStoreActivity
-import com.konkuk.americano.Model.Store_Model
-import com.konkuk.americano.R
+import com.konkuk.americano.UI.EditStore.EditStoreActivity
 import com.konkuk.americano.Repo.Editstore_Repo
 import com.konkuk.americano.ViewModel.MyStoreViewModel
-import com.konkuk.americano.ViewModel.PostStoreViewModel
 import com.konkuk.americano.databinding.ActivityMyStoreBinding
 
 class MyStoreActivity : AppCompatActivity() {

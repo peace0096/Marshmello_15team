@@ -2,8 +2,8 @@ package com.konkuk.americano.api.List
 
 import android.util.Log
 import com.konkuk.americano.API.RetrofitClient
+import com.konkuk.americano.Model.WriteReviewData
 import com.konkuk.americano.Repo.UserMe_Repo
-import com.konkuk.americano.model.WriteReviewData
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject

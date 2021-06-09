@@ -1,23 +1,19 @@
-package com.konkuk.americano.Map
+package com.konkuk.americano.UI.Map
 
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.location.LocationManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -32,21 +28,19 @@ import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.libraries.maps.model.Marker
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.konkuk.americano.MyStore.MyStoreActivity
+import com.konkuk.americano.UI.MyStore.MyStoreActivity
 import com.konkuk.americano.R
-import com.konkuk.americano.SettingActivity
+import com.konkuk.americano.UI.Setting.SettingActivity
 import com.konkuk.americano.ViewModel.UserViewModel
 import com.konkuk.americano.databinding.ActivityMapBinding
 import com.konkuk.americano.Model.StoreReviewData
 import com.konkuk.americano.Repo.UserMe_Repo
 
-import com.konkuk.americano.ui.storedetail.ReviewsAdapter
+import com.konkuk.americano.UI.StoreDetail.ReviewsAdapter
 import com.konkuk.americano.ViewModel.ReviewsViewModel
 
 class MapActivity : AppCompatActivity() {
@@ -55,11 +49,6 @@ class MapActivity : AppCompatActivity() {
     private val userViewModel = UserViewModel(this)
     private val reviewsViewModel = ReviewsViewModel()
     private lateinit var adapter:ReviewsAdapter
-
-    lateinit var marker_view: View
-    lateinit var marker_image: ImageView
-    lateinit var marker_title: TextView
-    lateinit var marker_content: TextView
 
     var loc = LatLng(37.554752, 126.970631) //default
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient

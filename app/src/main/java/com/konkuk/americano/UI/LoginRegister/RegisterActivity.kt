@@ -1,4 +1,4 @@
-package com.konkuk.americano.LoginRegister
+package com.konkuk.americano.UI.LoginRegister
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -9,10 +9,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
-import com.konkuk.americano.R
-import com.konkuk.americano.Repo.UserMe_Repo
 import com.konkuk.americano.ViewModel.UserViewModel
-import com.konkuk.americano.databinding.ActivityRegisterAcitivtyBinding
 import com.konkuk.americano.databinding.ActivityRegisterBinding
 import gun0912.tedimagepicker.builder.TedImagePicker
 
@@ -49,23 +46,46 @@ class RegisterActivity : AppCompatActivity() {
     private fun init() {
         binding.apply {
             registerBtn.setOnClickListener {
-                //TODO 비밀번호 에러메세지 추가해야할 것
                 val id = idEditText.text.toString()
                 val password = passwordEditText.text.toString()
                 val password_r = passwordEditText1.text.toString()
-                if(password != password_r) {
-                    passwordEditText1.error = "비밀번호를 다시 확인해주세요"
+                val nickname = nicknameEditText.text.toString()
+                if(idEditText.text!!.isEmpty()) {
+                    idEditText.error = "아이디 필수!"
+                    return@setOnClickListener
+                }else {
+                    idEditText.error = null
                 }
-                else {
+                if(passwordEditText.text!!.isEmpty()) {
+                    passwordEditText.error = "비밀번호 필수!"
+                    return@setOnClickListener
+                }else {
+                    passwordEditText.error = null
+                }
+                if(passwordEditText1.text!!.isEmpty()) {
+                    passwordEditText1.error = "비밀번호 다시 입력!"
+                    return@setOnClickListener
+                }else {
                     passwordEditText1.error = null
-                    val nickname = nicknameEditText.text.toString()
-                    var profileImage:Bitmap? = null
-                    if(image != null)
-                        profileImage = image
-                    val latitude = 0.0
-                    val longitude = 0.0
-                    viewModel.registerImage(id, password, nickname, profileImage, latitude, longitude)
                 }
+                if(nicknameEditText.text!!.isEmpty()) {
+                    nicknameEditText.error = "닉네임 필수!"
+                    return@setOnClickListener
+                }else {
+                    nicknameEditText.error = null
+                }
+                if(password != password_r) {
+                    passwordEditText1.error = "비밀번호가 서로 다름!"
+                    return@setOnClickListener
+                }else {
+                    passwordEditText.error = null
+                }
+                var profileImage:Bitmap? = null
+                if(image != null)
+                    profileImage = image
+                val latitude = 0.0
+                val longitude = 0.0
+                viewModel.registerImage(id, password, nickname, profileImage, latitude, longitude)
 
             }
 

@@ -1,6 +1,5 @@
-package com.konkuk.americano.CreateReview
+package com.konkuk.americano.UI.CreateReview
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar

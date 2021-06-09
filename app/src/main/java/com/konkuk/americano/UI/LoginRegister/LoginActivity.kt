@@ -1,11 +1,11 @@
-package com.konkuk.americano.LoginRegister
+package com.konkuk.americano.UI.LoginRegister
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.konkuk.americano.Map.MapActivity
+import com.konkuk.americano.UI.Map.MapActivity
 import com.konkuk.americano.ViewModel.UserViewModel
 import com.konkuk.americano.databinding.ActivityLoginBinding
 
@@ -33,7 +33,6 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    //TODO 로그인 예외처리 해야함
     private fun init() {
         binding.apply {
             loginBtn.setOnClickListener {
@@ -41,7 +40,6 @@ class LoginActivity : AppCompatActivity() {
                 val password = passwordEditText.text.toString()
                 userViewModel.login(id, password)
             }
-
 
             registerText.setOnClickListener {
                 val intent = Intent(baseContext, RegisterActivity::class.java)

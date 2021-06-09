@@ -1,4 +1,4 @@
-package com.konkuk.americano.viewmodel
+package com.konkuk.americano.ViewModel
 
 import android.app.Activity
 import android.content.Context
@@ -7,8 +7,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.konkuk.americano.API.List.UploadImageAPI
 import com.konkuk.americano.API.RetrofitClient
+import com.konkuk.americano.Model.WriteReviewData
 import com.konkuk.americano.api.List.PostWriteReviewAPI
-import com.konkuk.americano.model.WriteReviewData
 import org.json.JSONArray
 
 class WriteReviewViewModel(val context: Context, val activity: Activity) {

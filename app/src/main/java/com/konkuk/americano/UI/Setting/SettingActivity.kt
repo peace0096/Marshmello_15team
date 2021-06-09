@@ -1,15 +1,11 @@
-package com.konkuk.americano
+package com.konkuk.americano.UI.Setting
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
-import com.konkuk.americano.CreateReview.CreateReviewActivity
-import com.konkuk.americano.CreateStore.CreateStoreActivity
-import com.konkuk.americano.MyStore.MyStoreActivity
-import com.konkuk.americano.ProfileEdit.ProfileEditActivity
+import com.konkuk.americano.UI.CreateReview.CreateReviewActivity
+import com.konkuk.americano.UI.MyStore.MyStoreActivity
+import com.konkuk.americano.UI.ProfileEdit.ProfileEditActivity
 import com.konkuk.americano.ViewModel.SettingViewModel
 import com.konkuk.americano.databinding.ActivitySettingBinding
 

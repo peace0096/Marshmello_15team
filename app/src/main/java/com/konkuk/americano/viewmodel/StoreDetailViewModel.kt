@@ -1,4 +1,4 @@
-package com.konkuk.americano.viewmodel
+package com.konkuk.americano.ViewModel
 
 import android.app.Activity
 import android.content.Context
