@@ -38,8 +38,8 @@ import com.konkuk.americano.SettingActivity
 import com.konkuk.americano.ViewModel.UserViewModel
 import com.konkuk.americano.databinding.ActivityMapBinding
 import com.konkuk.americano.Model.StoreReviewData
-import com.konkuk.americano.Model.UserMe_Model
 import com.konkuk.americano.Repo.UserMe_Repo
+
 import com.konkuk.americano.ui.storedetail.ReviewsAdapter
 import com.konkuk.americano.ViewModel.ReviewsViewModel
 
@@ -50,7 +50,8 @@ class MapActivity : AppCompatActivity() {
     private val reviewsViewModel = ReviewsViewModel()
     private lateinit var adapter:ReviewsAdapter
 
-    var loc = LatLng(37.554752, 126.970631)
+
+    var loc = LatLng(37.554752, 126.970631) //default
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     lateinit var locationRequest: LocationRequest
     lateinit var locationCallback: LocationCallback
@@ -68,32 +69,60 @@ class MapActivity : AppCompatActivity() {
 
     fun initObserve() {
         userViewModel.listStoreModel.observe(this, Observer {
+            googleMap.clear()
             for(e in it) {
-                googleMap.clear()
                 val option = MarkerOptions()
                 val lng = LatLng(e.latitude, e.longitude)
+                Log.d("store", e.title)
+                Log.d("store", "${e.latitude}, ${e.longitude}")
                 option.position(lng)
                 option.title(e.title)
                 option.snippet(e.content)
                 option.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
                 googleMap.addMarker(option)
+                    .tag = e.storeId
             }
 
         })
 
         reviewsViewModel.recentReviewModel.observe(this, Observer {
-            setAdapter()
+            //setAdapter()
+            val layout = LinearLayoutManager(this@MapActivity, LinearLayoutManager.VERTICAL, false)
+
+            adapter = ReviewsAdapter(it, this@MapActivity, this@MapActivity)
+            binding.apply {
+                recyclerView.layoutManager = layout
+                recyclerView.adapter = adapter
+                if(reviewsViewModel != null) {
+                    adapter.itemClickListener = object : ReviewsAdapter.OnItemClickListener {
+                        override fun onItemClick(
+                            holder: ReviewsAdapter.ViewHolder,
+                            view: View,
+                            data: StoreReviewData,
+                            position: Int
+                        ) {
+
+                        }
+
+                    }
+                }
+
+            }
         })
 
         userViewModel.usermodel.observe(this, Observer {
-            val uri = Uri.parse(it.profileImage[0])
+            var uri:Uri? = null
+            if(it.profileImage.size != 0)
+                uri = Uri.parse(it.profileImage[0])
+            Log.d("mapactivity observe", uri.toString())
             binding.apply {
-                val header_imageView = navigationView.getHeaderView(0).findViewById<ImageView>(R.id.imageView)
+                val header_imageView = navigationView.getHeaderView(0).findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.imageView)
                 val header_idTextView = navigationView.getHeaderView(0).findViewById<TextView>(R.id.idTextView)
                 val header_nicknameTextView = navigationView.getHeaderView(0).findViewById<TextView>(R.id.nicknameTextView)
-                Glide.with(baseContext)
-                    .load(uri)
-                    .into(header_imageView)
+                if(uri != null)
+                    Glide.with(baseContext)
+                        .load(uri)
+                        .into(header_imageView)
                 header_idTextView.text = it.loginId
                 header_nicknameTextView.text = it.nickname
             }
@@ -115,14 +144,14 @@ class MapActivity : AppCompatActivity() {
 
             override fun onLocationResult(location: LocationResult) {
                 if(location.locations.size == 0) return
+
+                userViewModel.updateUserLocation(location.locations[location.locations.size-1].latitude, location.locations[location.locations.size-1].longitude)
+                loc = LatLng(location.locations[location.locations.size-1].latitude, location.locations[location.locations.size-1].longitude)
                 if(!isMapLoad) {
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f))
                     drawMarkers()
                     isMapLoad = true
                 }
-                userViewModel.updateUserLocation(location.locations[location.locations.size-1].latitude, location.locations[location.locations.size-1].longitude)
-                loc = LatLng(location.locations[location.locations.size-1].latitude, location.locations[location.locations.size-1].longitude)
-
                 Log.i("location", "LocationCallback() , ${loc.latitude}, ${loc.longitude}, ${location.locations.size-1}, $startupdate")
             }
         }
@@ -148,34 +177,14 @@ class MapActivity : AppCompatActivity() {
     }
 
     private fun initMapListener() {
+        googleMap.setOnInfoWindowClickListener {
+            val storeId = it.tag
+            Log.d("touch", storeId.toString())
+        }
+
         googleMap.setOnMapClickListener {
-
-
+            Log.d("touch", "Click!")
         }
-    }
-
-    private fun setAdapter() {
-        val layout = LinearLayoutManager(this@MapActivity, LinearLayoutManager.VERTICAL, false)
-        binding.apply {
-            recyclerView.layoutManager = layout
-            if(reviewsViewModel != null) {
-                val model = reviewsViewModel.recentReviewModel.value
-                adapter = ReviewsAdapter(model!!, this@MapActivity, this@MapActivity)
-                adapter.itemClickListener = object : ReviewsAdapter.OnItemClickListener {
-                    override fun onItemClick(
-                        holder: ReviewsAdapter.ViewHolder,
-                        view: View,
-                        data: StoreReviewData,
-                        position: Int
-                    ) {
-
-                    }
-
-                }
-            }
-
-        }
-
     }
 
     private fun init() {
@@ -184,7 +193,7 @@ class MapActivity : AppCompatActivity() {
             userViewModel.tokenmodel.value = UserMe_Repo.getInstance().gettoken()
 
             val bottomSheetBehavior = BottomSheetBehavior.from<LinearLayout>(bottomSheet)
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
             bottomSheetBehavior.halfExpandedRatio = 0.4f
             bottomSheetBehavior.isHideable = false
             bottomSheetBehavior.isFitToContents = false
@@ -192,7 +201,6 @@ class MapActivity : AppCompatActivity() {
             setSupportActionBar(toolbar)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
-
 
 
             navigationView.setNavigationItemSelectedListener {
@@ -228,6 +236,7 @@ class MapActivity : AppCompatActivity() {
             }
         }
         reviewsViewModel.loadRecentReviews()
+        userViewModel.getUserMe()
 
     }
 

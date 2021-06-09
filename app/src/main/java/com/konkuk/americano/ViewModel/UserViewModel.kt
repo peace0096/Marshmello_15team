@@ -2,10 +2,10 @@ package com.konkuk.americano.ViewModel
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.konkuk.americano.API.List.UploadImageAPI
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Model.Store_Model
@@ -37,39 +37,56 @@ class UserViewModel(val context: Context) {
         })
     }
 
-    fun register(loginId:String, password:String, nickname:String, profileImage:Bitmap?, latitude:Double, longitude:Double) {
+    fun registerImage(loginId:String, password:String, nickname:String, profileImage:Bitmap?, latitude:Double, longitude:Double) {
         val bitmaps = ArrayList<Bitmap>()
+        Log.d("register", "start")
+        var profileImageUrl:String = ""
         if (profileImage != null) {
             bitmaps.add(profileImage)
-        }
-
-        UploadImageAPI.call(context, bitmaps, object : RetrofitClient.callback {
-            override fun imageUploadCallback(isSuccessful: Boolean, result: JSONArray) {
-                if(isSuccessful) {
-                    val profileImageUrl = result.getJSONObject(0).toString()
-
-                    UserMe_Repo.getInstance().callPostUserRegister(loginId, password, nickname, profileImageUrl, latitude, longitude, object :RetrofitClient.callback {
-                        override fun callbackMethod(isSuccessful: Boolean, result: String?) {
-                            if(isSuccessful) {
-                                if(result != null) {
-                                    val gson = Gson()
-                                    val jsonObject = JSONObject(result)
-                                    UserMe_Repo.getInstance().setToken(jsonObject.get("token").toString())
-                                    tokenmodel.value = jsonObject.get("token").toString()
-                                }
-                            }
-                        }
-
-
-                    })
+            UploadImageAPI.call(context, bitmaps, object : RetrofitClient.callback {
+                override fun imageUploadCallback(isSuccessful: Boolean, result: JSONArray) {
+                    if(isSuccessful) {
+                        Log.d("register", "success")
+                        val jsonObject = result.get(0)
+                        profileImageUrl = jsonObject.toString()
+                        Log.d("image", profileImageUrl.toString())
+                        register(loginId, password, nickname, result.toString(), latitude, longitude)
+                    }
+                    else {
+                        Log.d("image", "fail")
+                    }
                 }
-            }
-        })
+            })
 
+        } else {
+
+            register(loginId, password, nickname, "[]", latitude, longitude)
+
+        }
 
 
 
     }
+
+    fun register(loginId:String, password:String, nickname:String, profileImageUrl:String, latitude:Double, longitude:Double) {
+        UserMe_Repo.getInstance().callPostUserRegister(loginId, password, nickname, profileImageUrl, latitude, longitude, object :RetrofitClient.callback {
+            override fun callbackMethod(isSuccessful1: Boolean, result1: String?) {
+                if(isSuccessful1) {
+                    if(result1 != null) {
+                        val gson = Gson()
+                        val jsonObject = JSONObject(result1)
+                        UserMe_Repo.getInstance().setToken(jsonObject.get("token").toString())
+                        tokenmodel.value = jsonObject.get("token").toString()
+                    }
+                } else {
+                    Log.d("err", result1.toString())
+                }
+            }
+
+
+        })
+    }
+
 
     fun getStoreListLoc(latitude: Double, longitude: Double) {
         UserMe_Repo.getInstance().callGetStoreLoc(latitude, longitude, object : RetrofitClient.callback {
@@ -82,6 +99,7 @@ class UserViewModel(val context: Context) {
                         for(i in 0 until jsonArray.length()) {
                             val jsonObject = jsonArray.getJSONObject(i)
                             list.add(gson.fromJson(jsonObject.toString(), Store_Model::class.java))
+                            //Log.d("store", list[list.size - 1].title)
                         }
                         UserMe_Repo.getInstance().setStoreModel(list)
                         listStoreModel.value = UserMe_Repo.getInstance().getStoreModel()

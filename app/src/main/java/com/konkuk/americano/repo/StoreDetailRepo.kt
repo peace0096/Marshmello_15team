@@ -1,8 +1,8 @@
-package com.konkuk.americano.repo
+package com.konkuk.americano.Repo
 
 import com.konkuk.americano.API.List.GetStoreDetailAPI
 import com.konkuk.americano.API.RetrofitClient
-import com.konkuk.americano.model.StoreDetailData
+import com.konkuk.americano.Model.StoreDetailData
 
 class StoreDetailRepo {
     companion object {

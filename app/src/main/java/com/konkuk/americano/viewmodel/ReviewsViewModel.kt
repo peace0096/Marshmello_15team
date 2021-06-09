@@ -11,7 +11,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.google.gson.Gson
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Model.StoreReviewData
-import com.konkuk.americano.repo.StoreReviewsRepo
+import com.konkuk.americano.Repo.StoreReviewsRepo
 import org.json.JSONArray
 
 class ReviewsViewModel {

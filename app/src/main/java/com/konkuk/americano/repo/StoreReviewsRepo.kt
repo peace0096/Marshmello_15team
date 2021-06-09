@@ -1,4 +1,4 @@
-package com.konkuk.americano.repo
+package com.konkuk.americano.Repo
 
 import com.konkuk.americano.API.List.GetRecentReview
 import com.konkuk.americano.API.List.GetStoreReviews

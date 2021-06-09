@@ -1,10 +1,10 @@
 package com.konkuk.americano.Repo
 
+import android.graphics.Bitmap
 import com.konkuk.americano.API.List.*
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Model.Store_Model
 import com.konkuk.americano.Model.UserMe_Model
-import javax.security.auth.callback.Callback
 
 class UserMe_Repo {
 
@@ -63,7 +63,7 @@ class UserMe_Repo {
         POSTUserLogin.call(loginId, password, callback)
     }
 
-    fun callPostUserRegister(loginId:String, password:String, nickname:String, profileImage:String, latitude:Double, longitude:Double, callback: RetrofitClient.callback) {
+    fun callPostUserRegister(loginId:String, password:String, nickname:String, profileImage: String, latitude:Double, longitude:Double, callback: RetrofitClient.callback) {
         POSTUserRegister.call(loginId, password, nickname, profileImage, latitude, longitude, callback)
     }
 
@@ -78,9 +78,5 @@ class UserMe_Repo {
     fun callPutUserLocation(latitude: Double, longitude:Double, callback: RetrofitClient.callback) {
         PutUserLocationAPI.call(latitude, longitude, callback)
     }
-
-
-
-
 
 }
