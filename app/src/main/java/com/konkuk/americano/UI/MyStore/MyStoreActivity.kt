@@ -56,8 +56,8 @@ class MyStoreActivity : AppCompatActivity() {
             adapter = MyStoreRecyclerAdapter(viewmodel.storeliveData)
             adapter.itemClickListener = object : MyStoreRecyclerAdapter.onItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
-
                     val intent = Intent(this@MyStoreActivity, EditStoreActivity::class.java)
+
                     Editstore_Repo.getInstance().setStoreId(adapter.data.value!![position].storeId)
                     startActivity(intent)
                 }
