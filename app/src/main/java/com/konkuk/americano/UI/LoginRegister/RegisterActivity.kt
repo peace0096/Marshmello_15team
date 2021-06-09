@@ -9,19 +9,18 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
-import com.konkuk.americano.R
 import com.konkuk.americano.ViewModel.UserViewModel
-import com.konkuk.americano.databinding.ActivityRegisterAcitivtyBinding
+import com.konkuk.americano.databinding.ActivityRegisterBinding
 import gun0912.tedimagepicker.builder.TedImagePicker
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var viewModel: UserViewModel
-    private lateinit var binding:ActivityRegisterAcitivtyBinding
+    private lateinit var binding:ActivityRegisterBinding
     private var image: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterAcitivtyBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initActionbar()
         initObserve()
@@ -40,24 +39,58 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun initActionbar() {
         val actionBar = supportActionBar
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.setHomeAsUpIndicator(R.drawable.ic_launcher_background)
+//        actionBar?.setDisplayHomeAsUpEnabled(true)
+//        actionBar?.setHomeAsUpIndicator(R.drawable.ic_launcher_background)
     }
-
 
     private fun init() {
         binding.apply {
             registerBtn.setOnClickListener {
-                //TODO 비밀번호 에러메세지 추가해야할 것
                 val id = idEditText.text.toString()
                 val password = passwordEditText.text.toString()
+                val password_r = passwordEditText1.text.toString()
                 val nickname = nicknameEditText.text.toString()
-                val profileImage = image
-
-                val latitutde = 0.0
+                if(idEditText.text!!.isEmpty()) {
+                    idEditText.error = "아이디 필수!"
+                    return@setOnClickListener
+                }else {
+                    idEditText.error = null
+                }
+                if(passwordEditText.text!!.isEmpty()) {
+                    passwordEditText.error = "비밀번호 필수!"
+                    return@setOnClickListener
+                }else {
+                    passwordEditText.error = null
+                }
+                if(passwordEditText1.text!!.isEmpty()) {
+                    passwordEditText1.error = "비밀번호 다시 입력!"
+                    return@setOnClickListener
+                }else {
+                    passwordEditText1.error = null
+                }
+                if(nicknameEditText.text!!.isEmpty()) {
+                    nicknameEditText.error = "닉네임 필수!"
+                    return@setOnClickListener
+                }else {
+                    nicknameEditText.error = null
+                }
+                if(password != password_r) {
+                    passwordEditText1.error = "비밀번호가 서로 다름!"
+                    return@setOnClickListener
+                }else {
+                    passwordEditText.error = null
+                }
+                var profileImage:Bitmap? = null
+                if(image != null)
+                    profileImage = image
+                val latitude = 0.0
                 val longitude = 0.0
-                viewModel.register(id, password, nickname, profileImage, latitutde, longitude)
+                viewModel.registerImage(id, password, nickname, profileImage, latitude, longitude)
 
+            }
+
+            registerBackBtn.setOnClickListener {
+                finish()
             }
 
             addProfile.setOnClickListener {
@@ -76,6 +109,8 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
             }
+
+
 
         }
     }
