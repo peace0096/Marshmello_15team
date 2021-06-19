@@ -72,6 +72,10 @@ class MapActivity : AppCompatActivity() {
     fun initObserve() {
         userViewModel.listStoreModel.observe(this, Observer {
             googleMap.clear()
+            val option1 = MarkerOptions()
+            option1.position(loc)
+            option1.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+            googleMap.addMarker(option1)
             for(e in it) {
                 val option = MarkerOptions()
                 val lng = LatLng(e.latitude, e.longitude)
@@ -148,10 +152,11 @@ class MapActivity : AppCompatActivity() {
                 if(location.locations.size == 0) return
                 userViewModel.updateUserLocation(location.locations[location.locations.size-1].latitude, location.locations[location.locations.size-1].longitude)
                 loc = LatLng(location.locations[location.locations.size-1].latitude, location.locations[location.locations.size-1].longitude)
-
+                UserMe_Repo.getInstance().getModel().latitude = loc.latitude
+                UserMe_Repo.getInstance().getModel().langitude = loc.longitude
 
                 userViewModel.usermodel.value?.latitude = loc.latitude
-                userViewModel.usermodel.value?.langitude = loc.latitude
+                userViewModel.usermodel.value?.langitude = loc.longitude
                 Log.d("user", userViewModel.usermodel.value?.latitude.toString())
                     if(!isMapLoad) {
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f))
@@ -257,10 +262,7 @@ class MapActivity : AppCompatActivity() {
                         val intent = Intent(baseContext, SettingActivity::class.java)
                         startActivity(intent)
                     }
-                    R.id.help -> {
-                        val intent = Intent(baseContext, MyStoreActivity::class.java)
-                        startActivity(intent)
-                    }
+
                 }
                 drawerlayout.closeDrawers()
                 false

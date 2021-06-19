@@ -21,7 +21,7 @@ object POSTUserRegister {
             callback.callbackMethod(false, null)
         }
 
-        RetrofitClient.getBaseClient().login(body.toString())
+        RetrofitClient.getBaseClient().register(body.toString())
             .enqueue(object :
                 Callback<String?> {
                 override fun onResponse(call: Call<String?>, response: Response<String?>) {

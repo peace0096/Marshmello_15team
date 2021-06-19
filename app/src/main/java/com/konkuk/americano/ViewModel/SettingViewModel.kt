@@ -3,10 +3,14 @@ package com.konkuk.americano.ViewModel
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.IntentCompat
 import androidx.lifecycle.ViewModel
 import com.konkuk.americano.API.RetrofitClient
 import com.konkuk.americano.Repo.UserMe_Repo
+import com.konkuk.americano.UI.LoginRegister.LoginActivity
 
 
 class SettingViewModel(val context : Context, val activity : Activity) : ViewModel() {
@@ -42,8 +46,12 @@ class SettingViewModel(val context : Context, val activity : Activity) : ViewMod
             "로그아웃"
         ) { dialog, id ->
             //로그인 화면으로 돌아 가야 됨
-            TODO("로그인 화면으로 가야함 ")
             dialog.dismiss()
+            activity.finishAffinity()
+            System.runFinalization()
+            val intent = Intent(context, LoginActivity::class.java)
+            context.startActivity(intent)
+            System.exit(0)
         }
 
         builder.setNegativeButton(
@@ -60,8 +68,11 @@ class SettingViewModel(val context : Context, val activity : Activity) : ViewMod
             override fun callbackMethod(isSuccessful: Boolean, result: String?) {
                 if (isSuccessful){
                     Toast.makeText(context, "회원탈퇴 되셨습니다",Toast.LENGTH_SHORT).show()
-
-                    TODO("로그인 화면으로 가야함 ")
+                    activity.finishAffinity()
+                    System.runFinalization()
+                    val intent = Intent(context, LoginActivity::class.java)
+                    context.startActivity(intent)
+                    System.exit(0)
                 }
             }
 

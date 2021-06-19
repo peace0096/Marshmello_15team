@@ -28,7 +28,6 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MapActivity::class.java)
                 startActivity(intent)
-                finish()
             }
         })
     }

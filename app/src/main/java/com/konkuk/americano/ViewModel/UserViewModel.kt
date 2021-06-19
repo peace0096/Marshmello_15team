@@ -63,9 +63,6 @@ class UserViewModel(val context: Context) {
             register(loginId, password, nickname, "[]", latitude, longitude)
 
         }
-
-
-
     }
 
     fun register(loginId:String, password:String, nickname:String, profileImageUrl:String, latitude:Double, longitude:Double) {
@@ -79,6 +76,7 @@ class UserViewModel(val context: Context) {
                         tokenmodel.value = jsonObject.get("token").toString()
                     }
                 } else {
+                    Toast.makeText(context, result1.toString(), Toast.LENGTH_SHORT).show()
                     Log.d("err", result1.toString())
                 }
             }
